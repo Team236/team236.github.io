@@ -1,0 +1,32 @@
+<!DOCTYPE html> <!-- declares were using HTML 5 -->
+<html>
+  <head>
+    <title>About Us</title>  <!--title and logo in the tab space-->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+<center>
+  <body style="background-color:#8ca7fa;">  <!-- Background color -->
+    <img src="brighter banner.jpg" alt="The Hall of Fame team from LOLHS and East Lyme High School width="1115" height="130">
+    <p>Welcome to the new website of the 236 TechnoTicks</p>
+    <h2>Attention: this website is in active development and is not done yet!</h2>
+<h1>About Us</h1>
+    <p>By: Woody Goss, with help from Gemini AI </p>
+<br>
+    <p>Team 236 Techno-Ticks, is a FIRST Robotics Competition (FRC) team based in Old Lyme, Connecticut. 
+Founded in 1999, our team is dedicated to fostering a love of science, technology, engineering, art, and mathematics (STEAM) in our members and community.</p> 
+    <br>
+<section>
+  <h2>Our Mission</h2>
+  <ul>
+    <li>To inspire and educate students in the fields of STEM.</li>
+    <li>To foster a culture Gracious-Professionalism</li>
+    <li>To compete at the highest level of FIRST Robotics Competition.</li>
+    <li>To give back to our community through outreach and mentorship.</li>
+  </ul>
+</section>
+    <p>Team 236 is proud to be a Hall of Fame team since 2009!</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NmzCLohIZLg?si=YhCy17hlAth67IBK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </body>
+</center>
+</html>
