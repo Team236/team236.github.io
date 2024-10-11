@@ -1,5 +1,8 @@
 # [team236.github.io](https://team236.github.io)
 ## A 'modern' 236 website
-This is a potential website
-Code by Woody and Mike
-Be careful if you touch the code; MY CODE IS KIND OF BAD AND WILL BREAK. - Thanks Woody
+This is a potential website for First Robotics Team 236 'TechnoTicks.'\
+Code by Woody, Mike, and GitHub user ko-sako "Kayo"\
+\
+Be careful when touching the code; MY CODE IS BAD AND WILL BREAK.\
+Thanks,\
+Woody (self-proclaimed head website coder)
