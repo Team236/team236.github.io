@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New 236 Website Alpha</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline CSS moved here for demonstration purposes */
+        body {
+            background-color: #8ca7fa;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h3 {
+            margin: 20px 0;
+        }
+        .button {
+            background-color: rgb(39, 65, 152);
+            color: rgb(240, 243, 246);
+            border: none;
+            border-radius: 8px;
+            height: 50px;
+            width: auto;
+            min-width: 150px;
+            font-size: 18px;
+            margin: 10px 5px;
+            padding: 0 20px;
+            cursor: pointer;
+            font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+        }
+        .button:hover {
+            background-color: rgb(30, 50, 130); /* Hover effect */
+        }
+        .banner {
+            width: 100%;
+            max-width: 1115px;
+            height: auto;
+        }
+        iframe {
+            margin: 20px 0;
+            border: none;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h3>Welcome to the new website of the 236 TechnoTicks! Attention: This website is in active development. Bugs are common.</h3>
+    </header>
+    <main>
+        <img src="brighter-banner.jpg" alt="The Hall of Fame team from LOLHS and East Lyme High School" class="banner">
+        
+        <nav>
+            <a href="https://team236.github.io/" target="_blank">
+                <button class="button">Home</button>
+            </a>
+            <a href="https://team236.github.io/about_us.html" target="_blank">
+                <button class="button">About Us</button>
+            </a>
+            <a href="https://team236.github.io/New_members.html" target="_blank">
+                <button class="button">New Member Info</button>
+            </a>
+            <a href="https://team236.github.io/Contact_Us.html" target="_blank">
+                <button class="button">Contact Us</button>
+            </a>
+            <a href="https://team236.github.io/Robot_archive.html" target="_blank">
+                <button class="button">Robot Archive</button>
+            </a>
+            <a href="https://team236.github.io/Links.html" target="_blank">
+                <button class="button">Links</button>
+            </a>
+        </nav>
+
+        <section>
+            <iframe 
+                src="https://docs.google.com/presentation/d/e/2PACX-1vQIhQ-xsC09aNmIXwkdrBqveGMTDITgRorUc5QiwhMZu5RF2nCndZovhQrThaTw0BvwOhqO4plpheY_/embed?start=true&loop=true&delayms=3000" 
+                width="1115" 
+                height="625" 
+                allowfullscreen 
+                title="Robot Slideshow (photos of team and robot)">
+            </iframe>
+        </section>
+
+        <section>
+            <iframe 
+                src="https://team236.github.io/First count down clock.html" 
+                width="440" 
+                height="330" 
+                allowtransparency="true" 
+                title="Countdown Clock">
+            </iframe>
+            <br>
+            <a href="https://team236.github.io/First count down clock.html" target="_blank">
+                <button class="button">Fullscreen &#x26F6;</button>
+            </a>
+        </section>
+    </main>
+    <footer>
+        <p>Copyright &copy; 2024 Team 236 - TechnoTicks</p>
+        <p><a href="https://github.com/Team236/team236.github.io" target="_blank">GitHub Repository</a></p>
+    </footer>
+</body>
+</html>
