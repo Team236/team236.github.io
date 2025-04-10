@@ -42,19 +42,27 @@
       }
       
       .header-banner {
-        max-height: 120px;
+        max-height: 150px;
         object-fit: contain;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .header-banner:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
       }
     </style>
   </head>
   
   <body>
     <!-- Header Section with Banner -->
-    <header class="gradient-bg text-white py-4">
+    <header class="gradient-bg text-white py-6">
       <div class="container mx-auto px-4">
         <div class="flex flex-col items-center">
           <img src="brighter banner.jpg" alt="236 Technoticks Banner" class="header-banner">
-          <p class="text-sm md:text-base bg-white text-blue-700 px-3 py-1 rounded-full font-medium mt-2">
+          <p class="text-sm md:text-base bg-white text-blue-700 px-3 py-1 rounded-full font-medium mt-3">
             Website under active development
           </p>
         </div>
