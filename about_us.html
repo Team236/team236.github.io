@@ -1,159 +1,189 @@
 <!DOCTYPE html> <!-- Declares we're using HTML 5 [we're not strictly because we're using the "center," which is HTML 4]-->
-<html>
+<html lang='en'>
   <head>
-    <title>About Us</title>  <!--title and logo in the tab space-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>236 Technoticks</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <style> <!--Start CSS-->
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0px;
-      padding: 0;
-    }
-
-    header {
-      background-color:#8ca7fa;
-      color: #8ca7fa;
-      padding: 20px;
-      text-align: center;  
-
-    }
-
-    main {
-      padding: 40px;
-      margin-left: 200px;
-      margin-right: 200px;
-    }
-
-    section {
-      margin-bottom:  
- 40px;
-    }
-
-    h1, h2, p {
-      text-align: center;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-  </style>
-</head>
-<body style="background-color:#8ca7fa;">
-  <center>
-     <img src="brighter banner.jpg" alt="The Hall of Fame team from LOLHS and East Lyme High School width="1115" height="130">
- <br>
-      <a href="https://team236.github.io/" target="_blank">
-      <button
-        style="
-          background-color: rgb(39, 65, 152);
-          color: rgb(240, 243, 246);
-          border-radius: 8px;
-          height: 50px;
-          width: 150px;
-          font-size: 18px;
-          font-family: 'Franklin Gothic Medium', 'Arial', Arial,
-            sans-serif;
-        "
-      >
-        Home
-      </button>
-    </a>
-  <a href="https://team236.github.io/about_us.html" target="_blank">
-      <button
-        style="
-          background-color: rgb(39, 65, 152);
-          color: rgb(240, 243, 246);
-          border-radius: 8px;
-          height: 50px;
-          width: 150px;
-          font-size: 18px;
-          font-family: 'Franklin Gothic Medium', 'Arial', Arial,
-            sans-serif;
-        "
-      >
-        About Us
-      </button>
-    </a>
-     <a href="https://team236.github.io/New_members.html" target="_blank">
-      <button
-        style="
-          background-color: rgb(39, 65, 152);
-          color: rgb(240, 243, 246);
-          border-radius: 8px;
-          height: 50px;
-          width: 240px;
-          font-size: 18px;
-          font-family: 'Franklin Gothic Medium', 'Arial', Arial,
-            sans-serif;
-        "
-      >
-        New member info
-      </button>
-    </a>
-    <a href="https://team236.github.io/Contact_Us.html" target="_blank">
-      <button
-        style="
-          background-color: rgb(39, 65, 152);
-          color: rgb(240, 243, 246);
-          border-radius: 8px;
-          height: 50px;
-          width: 170px;
-          font-size: 18px;
-          font-family: 'Franklin Gothic Medium', 'Arial', Arial,
-            sans-serif;
-        "
-      >
-        Contact Us
-      </button>
-    </a>
-        <a href="https://team236.github.io/Robot_archive.html" target="_blank">
-      <button
-        style="
-          background-color: rgb(39, 65, 152);
-          color: rgb(240, 243, 246);
-          border-radius: 8px;
-          height: 50px;
-          width: 220px;
-          font-size: 18px;
-          font-family: 'Franklin Gothic Medium', 'Arial', Arial,
-            sans-serif;
-        "
-      >
-        Robot Archive
-      </button>
-    </a>
-    <a href="https://team236.github.io/Links.html" target="_blank">
-      <button
-        style="
-          background-color: rgb(39, 65, 152);
-          color: rgb(240, 243, 246);
-          border-radius: 8px;
-          height: 50px;
-          width: 170px;
-          font-size: 18px;
-          font-family: 'Franklin Gothic Medium', 'Arial', Arial,
-            sans-serif;
-        "
-      >
-        Links
-      </button>
-    </a>
-     </center>
-  <main>
-    <section>
-      <h2>About Us</h2>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+      
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f0f4f8;
+       
+      }
+      
+      .gradient-bg {
+        background: linear-gradient(135deg, #8ca7fa 0%, #5a7df5 100%);
+      }
+      
+      .nav-btn {
+        transition: all 0.3s ease;
+      }
+      
+      .nav-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .footer-icon {
+        transition: all 0.3s ease;
+      }
+      
+      .footer-icon:hover {
+        transform: scale(1.1);
+      }
+      
+      .robot-slideshow {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-radius: 0.5rem;
+        padding: 40px;
+      margin-left: 100px;
+      margin-right: 100px;
+      }
+      
+      .header-banner {
+        max-height: 180px;
+        object-fit: contain;
+        border-radius: 24px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .header-banner:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+      
+      .disney-border {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .disney-border::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-radius: 24px;
+        pointer-events: none;
+      }
+      
+      /* DeepSite disclaimer styles */
+      .deepsite-badge {
+        background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+        border-radius: 9999px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+      }
+      
+      .deepsite-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+      
+      .deepsite-logo {
+        width: 20px;
+        height: 20px;
+      }
+      
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!-- Header Section with Banner -->
+    <header class="gradient-bg text-white py-6">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center">
+          <a href="https://team236.github.io/" target="_blank">
+            <img src="brighter banner.jpg" alt="236 Technoticks Banner" 
+                 class="header-banner disney-border hover:border-white">
+          </a>
+          <p class="text-sm md:text-base bg-white text-blue-700 px-3 py-1 rounded-full font-medium mt-3">
+            Website under active development
+          </p>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="container mx-auto px-4 mt-8">
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+        <a href="https://team236.github.io/" target="_blank" 
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-home mr-2"></i>Home
+        </a>
+        
+        <a href="https://team236.github.io/about_us.html" target="_blank" 
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-users mr-2"></i>About Us
+        </a>
+        
+        <a href="https://team236.github.io/New_members.html" target="_blank" 
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-user-plus mr-2"></i>New Members
+        </a>
+        
+        <a href="https://team236.github.io/Contact_Us.html" target="_blank" 
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-envelope mr-2"></i>Contact Us
+        </a>
+        
+        <a href="https://team236.github.io/Robot_archive.html" target="_blank" 
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-robot mr-2"></i>Robot Archive
+        </a>
+        
+        <a href="https://team236.github.io/Links.html" target="_blank" 
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-link mr-2"></i>Links
+        </a>
+      </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <center>
+    <br>
+      <h1 style="font-size:36px; ">About Us</h1>
+      </center>
+    <main class="container mx-auto px-4 my-10">
+      <div class="robot-slideshow overflow-hidden">
+     
     </section>
+    <center>
 <p>FIRST Team 236 was founded in 1999 by a group of like-minded, forward-thinking students, teachers and mentors with an interest in cutting edge technology.  FIRST offered a fun way to learn about robotics, design and computer programming.
 
 Our team encompasses students in grades 9-12, teachers and adult mentors.  All are welcome.  Through the years, the team has grown to involve more than 10 percent (At times) of the LOLHS's student body & students from East Lyme high school, and it is well known throughout the community for its enthusiasm for everything from robots to community service.
 
 We strongly believe that our mentors' mission is to  support and encourage our students and to pass on their skills and experience.  Students get as much hands-on experience as possible and work closely with mentors.</p>
+</center>
     <section>
       <h2>Our Mission</h2>
       <ul>
@@ -164,73 +194,81 @@ We strongly believe that our mentors' mission is to  support and encourage our s
       </ul>
       <p>Team 236 is proud to be a Hall of Fame team since 2009.</p>
       <center>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/NmzCLohIZLg?si=zLCAVCOIDyQxwBZ5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<footer>
-
-<!-- W3 schools code -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 30px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
-  border-radius: 50%;
-}
-
-.fa:hover {
-    opacity: 0.7;
-}
-
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
-
-.fa-twitter {
-  background: #55ACEE;
-  color: white;
-}
-
-
-.fa-youtube {
-  background: #bb0000;
-  color: white;
-}
-
-.fa-instagram {
-  background: #fc03a1;
-  color: white;
-}
-
-.fa-pinterest {
-  background: #cb2027;
-  color: white;
-}
-
-
-
-.fa-flickr {
-  background: #f40083;
-  color: white;
-}
-
-</style>
-
-
-<a href="https://www.facebook.com/FIRSTTeam236/" class="fa fa-facebook"></a>
-<a href="https://x.com/technoticks236" class="fa fa-twitter"></a>
-<a href="https://www.youtube.com/@thetechnoticks" class="fa fa-youtube"></a>
-<a href="https://www.instagram.com/236technoticks/" class="fa fa-instagram"></a>
-<a href="https://www.pinterest.com/team236/6" class="fa fa-pinterest"></a>
- <!--<a href="#" class="fa fa-flickr"></a>-->
-        <p>Copyright &copy; 2024 Team 236 - TechnoTicks</p>
-        <p><a href="https://github.com/Team236/team236.github.io" target="_blank">GitHub Repository</a></p>
-    </footer>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/NmzCLohIZLg?si=zLCAVCOIDyQxwBZ5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </center>
-    </section>
-  </main>
-</body>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center">
+          <!-- Social Media Icons -->
+          <div class="flex space-x-4 mb-6">
+            <a href="https://www.facebook.com/FIRSTTeam236/" class="footer-icon bg-blue-600 hover:bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a href="https://x.com/technoticks236" class="footer-icon bg-blue-400 hover:bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="https://www.youtube.com/@thetechnoticks" class="footer-icon bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-youtube text-xl"></i>
+            </a>
+            <a href="https://www.instagram.com/236technoticks/" class="footer-icon bg-pink-600 hover:bg-pink-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="https://www.pinterest.com/team236/6" class="footer-icon bg-red-500 hover:bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-pinterest text-xl"></i>
+            </a>
+          </div>
+          
+          <p class="text-sm mb-2">Copyright &copy; 2024-2025 Team 236 - TechnoTicks</p>
+          <a href="https://github.com/Team236/team236.github.io" target="_blank" class="text-blue-300 hover:text-blue-100 text-sm mb-4">
+            <i class="fab fa-github mr-1"></i> GitHub Repository
+          </a>
+          
+          <!-- DeepSite Badge in Footer -->
+          <a href="#" class="deepsite-badge pulse">
+            <img src="https://huggingface.co/spaces/enzostvs/deepsite/resolve/main/public/logo.svg" alt="DeepSite Logo" class="deepsite-logo">
+            <span>Made partially with DeepSite</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Optional: Add animation when banner is clicked
+      document.querySelector('.header-banner').addEventListener('click', function() {
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = 'scale(1.02)';
+        }, 100);
+      });
+      
+      // Add ripple effect to DeepSite badge
+      document.querySelector('.deepsite-badge').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const ripple = document.createElement('span');
+        ripple.className = 'absolute bg-white opacity-30 rounded-full';
+        ripple.style.width = '10px';
+        ripple.style.height = '10px';
+        ripple.style.left = (e.clientX - e.target.getBoundingClientRect().left - 5) + 'px';
+        ripple.style.top = (e.clientY - e.target.getBoundingClientRect().top - 5) + 'px';
+        ripple.style.transform = 'scale(0)';
+        ripple.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.style.transform = 'scale(40)';
+          ripple.style.opacity = '0';
+        }, 10);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    </script>
+  </body>
+</html>
