@@ -199,4 +199,63 @@
             <a href="https://www.youtube.com/@thetechnoticks" class="footer-icon bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
               <i class="fab fa-youtube text-xl"></i>
             </a>
-            <a href="https://www.instagram.com/236technoticks/" class="footer-icon bg-pink-600 
+            <a href="https://www.instagram.com/236technoticks/" class="footer-icon bg-pink-600 hover:bg-pink-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="https://www.pinterest.com/team236/6" class="footer-icon bg-red-500 hover:bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-pinterest text-xl"></i>
+            </a>
+          </div>
+          
+          <p class="text-sm mb-2">Copyright &copy; 2024-2025 Team 236 - TechnoTicks</p>
+          <a href="https://github.com/Team236/team236.github.io" target="_blank" class="text-blue-300 hover:text-blue-100 text-sm mb-4">
+            <i class="fab fa-github mr-1"></i> GitHub Repository
+          </a>
+          
+          <!-- DeepSite Badge in Footer -->
+          <a href="#" class="deepsite-badge pulse">
+            <img src="https://huggingface.co/spaces/enzostvs/deepsite/resolve/main/public/logo.svg" alt="DeepSite Logo" class="deepsite-logo">
+            <span>Made partially with DeepSite</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Optional: Add animation when banner is clicked
+      document.querySelector('.header-banner').addEventListener('click', function() {
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = 'scale(1.02)';
+        }, 100);
+      });
+      
+      // Add ripple effect to DeepSite badge
+      document.querySelector('.deepsite-badge').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const ripple = document.createElement('span');
+        ripple.className = 'absolute bg-white opacity-30 rounded-full';
+        ripple.style.width = '10px';
+        ripple.style.height = '10px';
+        ripple.style.left = (e.clientX - e.target.getBoundingClientRect().left - 5) + 'px';
+        ripple.style.top = (e.clientY - e.target.getBoundingClientRect().top - 5) + 'px';
+        ripple.style.transform = 'scale(0)';
+        ripple.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.style.transform = 'scale(40)';
+          ripple.style.opacity = '0';
+        }, 10);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    </script>
+  </body>
+</html>
+
+
