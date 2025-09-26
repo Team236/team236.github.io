@@ -17,40 +17,41 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
+<script>
+  // Make sure body starts in coolLook by default (change if you prefer easyRead default)
+  // Add the class on page load if no theme is present
   (function initTheme() {
-    const body = document.body;
+    if (!document.body.classList.contains('theme-coolLook') &&
+        !document.body.classList.contains('theme-easyRead')) {
+      document.body.classList.add('theme-coolLook'); // default
+    }
+
     const btn = document.querySelector('.theme-toggle');
     if (!btn) return;
 
-    // Always default to CoolLook if no theme is set
-    if (!body.classList.contains('theme-coolLook') &&
-        !body.classList.contains('theme-easyRead')) {
-      body.classList.add('theme-coolLook');
-    }
-
-    // Update button label according to current theme
+    // set label based on active theme
     function setToggleLabel() {
-      const isCool = body.classList.contains('theme-coolLook');
+      const isCool = document.body.classList.contains('theme-coolLook');
       btn.textContent = isCool ? 'Switch to EasyRead' : 'Switch to CoolLook';
-      btn.setAttribute('aria-pressed', isCool ? 'true' : 'false');
-      btn.title = isCool
-        ? 'Switch to EasyRead (blue top, gray bottom)'
-        : 'Switch to CoolLook (animated neon)';
+      btn.setAttribute('aria-pressed', !isCool);
+      btn.title = isCool ? 'Switch to EasyRead (blue top, gray bottom)' : 'Switch to CoolLook (animated neon)';
     }
 
+    // toggle both classes (keeps exactly one active)
     function toggleTheme() {
-      body.classList.toggle('theme-coolLook');
-      body.classList.toggle('theme-easyRead');
+      document.body.classList.toggle('theme-coolLook');
+      document.body.classList.toggle('theme-easyRead');
       setToggleLabel();
     }
 
+    // wire up
     btn.addEventListener('click', toggleTheme);
 
-    // Initial label on load
+    // initial label
     setToggleLabel();
   })();
 </script>
+
 
     <button class="theme-toggle" onclick="toggleTheme()">Switch to EasyRead</button>
 <style>
