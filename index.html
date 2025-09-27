@@ -19,6 +19,42 @@
 
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+/* ---------------- DeepSite Badge ---------------- */
+.deepsite-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.deepsite-badge:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.03);
+}
+
+.deepsite-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.deepsite-badge.pulse {
+  animation: badgePulse 2.5s infinite;
+}
+
+@keyframes badgePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+  70%  { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
 
       body {
         font-family: 'Roboto', sans-serif;
