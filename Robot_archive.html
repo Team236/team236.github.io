@@ -266,16 +266,16 @@
       /* ---- Hero ---- */
       .ra-hero {
         position: relative; overflow: hidden; margin-top: 2rem; isolation: isolate;
-        min-height: clamp(22rem, 36vw, 28rem); display: flex; align-items: flex-end;
+        min-height: clamp(13rem, 19vw, 15.5rem); display: flex; align-items: flex-end;
         border-radius: 1.5rem; border: 1px solid var(--ra-card-border);
         background: #0a0a1a; box-shadow: var(--ra-shadow);
       }
       /* photo on the right, fading into the card on its left edge */
       .ra-hero::before {
-        content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 62%; z-index: -2;
-        background: url('robot-hero.webp') 50% 60% / cover no-repeat;
-        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 24%);
-                mask-image: linear-gradient(90deg, transparent 0%, #000 24%);
+        content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: auto; aspect-ratio: 16 / 9; z-index: -2;
+        background: url('robot-hero.webp') center / cover no-repeat;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%);
+                mask-image: linear-gradient(90deg, transparent 0%, #000 40%);
       }
       .ra-hero::after {
         content: ''; position: absolute; inset: 0; z-index: -1;
@@ -284,18 +284,18 @@
           radial-gradient(circle at 8% 12%, rgba(128,0,255,0.35), transparent 55%);
       }
       @media (max-width: 760px) {
-        .ra-hero::before { width: 100%; -webkit-mask-image: none; mask-image: none; background-position: 50% 40%; }
+        .ra-hero::before { width: 100%; aspect-ratio: auto; -webkit-mask-image: none; mask-image: none; background-position: 50% 55%; }
         .ra-hero::after {
           background:
             linear-gradient(180deg, rgba(10,10,26,0.2) 0%, rgba(10,10,26,0.7) 55%, rgba(10,10,26,0.95) 100%),
             radial-gradient(circle at 10% 15%, rgba(128,0,255,0.35), transparent 55%);
         }
       }
-      .ra-hero-inner { position: relative; z-index: 1; padding: clamp(1.5rem, 4vw, 3rem); color: #fff; }
-      .ra-eyebrow { margin: 0 0 .5rem; font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #8ca7fa; }
-      .ra-hero h1 { margin: 0; font-size: clamp(2.6rem, 8vw, 5rem); line-height: 1; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
-      .ra-sub { margin: 1rem 0 0; max-width: 36rem; font-size: 1.1rem; line-height: 1.55; color: rgba(255,255,255,0.86); }
-      .ra-stats { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+      .ra-hero-inner { position: relative; z-index: 1; padding: clamp(1.25rem, 3vw, 2rem); color: #fff; }
+      .ra-eyebrow { margin: 0 0 .35rem; font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #8ca7fa; }
+      .ra-hero h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 3.5rem); line-height: 1; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+      .ra-sub { margin: .6rem 0 0; max-width: 36rem; font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.86); }
+      .ra-stats { display: flex; flex-wrap: wrap; gap: .6rem; margin: .9rem 0 0; padding: 0; list-style: none; }
       .ra-stats li {
         padding: .4rem .85rem; border-radius: 999px; font-size: .9rem; color: #fff;
         background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(6px);
@@ -394,6 +394,22 @@
       .ra-foot { margin: 2rem 0 0; text-align: center; color: var(--ra-muted); }
       .ra-foot a { color: var(--ra-accent); text-decoration: underline; }
 
+
+      /* Instagram embed panel */
+      .rc-media.ig { flex-direction: column; gap: .85rem; }
+      .rc-media iframe.ig-embed {
+        width: 100%; max-width: 540px; aspect-ratio: auto; height: 680px; min-height: 0;
+        border-radius: 1rem; background: #fff; box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.6);
+        color-scheme: light;
+      }
+      .ig-open {
+        display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .9rem; border-radius: 999px;
+        font-size: .85rem; text-decoration: none; color: var(--ra-muted);
+        background: var(--ra-chip); border: 1px solid var(--ra-chip-border);
+        transition: color .2s ease, border-color .2s ease, transform .2s ease;
+      }
+      .ig-open:hover { color: var(--ra-text); border-color: var(--ra-accent); transform: translateY(-2px); }
+
       /* scroll reveal (only when JS has switched it on) */
       .reveal-ready .rc { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease, border-color .3s ease; }
       .reveal-ready .rc.in { opacity: 1; transform: none; }
@@ -487,8 +503,11 @@
 
       <!-- Seasons -->
       <div class="ra-list">
-      <article class="rc" id="y2026">
-        
+      <article class="rc has-media" id="y2026">
+        <div class="rc-media ig">
+          <iframe class="ig-embed" src="https://www.instagram.com/p/DXHZGUhF-nD/embed/" title="Team 236's 2026 robot on Instagram" loading="lazy" scrolling="no" allowtransparency="true" allow="encrypted-media" style="height: 680px;"></iframe>
+          <a class="ig-open" href="https://www.instagram.com/p/DXHZGUhF-nD/" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i>View on Instagram</a>
+        </div>
         <div class="rc-content">
           <div class="rc-head">
             <h2 class="rc-title"><span class="rc-year">2026</span><span class="rc-game">Rebuilt</span></h2>
@@ -989,6 +1008,22 @@
         });
       })();
 
+    </script>
+      <!-- Instagram embed auto-height -->
+    <script>
+      (function () {
+        window.addEventListener('message', function (e) {
+          var host = '';
+          try { host = new URL(e.origin).hostname; } catch (err) { return; }
+          if (!/(^|\.)instagram\.com$/.test(host)) return;
+          var d = e.data;
+          if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
+          if (!d || d.type !== 'MEASURE' || !d.details || !d.details.height) return;
+          Array.prototype.forEach.call(document.querySelectorAll('iframe.ig-embed'), function (f) {
+            if (f.contentWindow === e.source) f.style.height = Math.ceil(d.details.height) + 'px';
+          });
+        });
+      })();
     </script>
   </body>
 </html>
