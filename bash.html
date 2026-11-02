@@ -204,12 +204,102 @@
       @media (max-width: 480px) {
         .theme-toggle { top: 0.6rem; right: 0.6rem; padding: 0.45rem 0.7rem; font-size: 0.9rem; }
       }
+    
+      /* ======================================================
+         NAV: sits inside the banner, then pops out into a floating bar on scroll
+         (the banner itself never floats)
+         ====================================================== */
+      /* a backdrop-filter on the header would trap the floating nav inside it */
+      header.gradient-bg { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+      .site-nav-slot { margin-top: 1.25rem; }
+
+      /* in the banner: no panel of its own */
+      body.theme-coolLook nav.site-nav,
+      body.theme-easyRead nav.site-nav {
+        background: transparent; padding: 0; margin: 0; border-radius: 0; border: 0; box-shadow: none; color: inherit;
+        backdrop-filter: none; -webkit-backdrop-filter: none;
+      }
+
+      /* the page you're on */
+      .nav-btn.nav-current {
+        background-image: linear-gradient(135deg, #5a7df5, #8b5cf6);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+      }
+
+      /* floating bar (JS adds .is-stuck once the nav scrolls past the top) */
+      body.theme-coolLook nav.site-nav.is-stuck,
+      body.theme-easyRead nav.site-nav.is-stuck {
+        position: fixed; top: .6rem; left: 50%; z-index: 900; box-sizing: border-box;
+        width: calc(100% - 1.5rem); padding: .45rem 4rem; border-radius: 1rem;
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        transform: translateX(-50%);
+        animation: navPop .35s cubic-bezier(.2, .8, .2, 1) both;
+      }
+      body.theme-coolLook nav.site-nav.is-stuck {
+        background: rgba(10, 10, 26, 0.84); border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.75);
+      }
+      body.theme-easyRead nav.site-nav.is-stuck {
+        background: rgba(255, 255, 255, 0.94); border: 1px solid rgba(30, 64, 175, 0.18);
+        box-shadow: 0 12px 26px -14px rgba(30, 64, 175, 0.45);
+      }
+      nav.site-nav.is-stuck .nav-row {
+        flex-wrap: nowrap; gap: .4rem; overflow-x: auto; scrollbar-width: none;
+        justify-content: flex-start; justify-content: safe center;
+      }
+      nav.site-nav.is-stuck .nav-row::-webkit-scrollbar { display: none; }
+      nav.site-nav.is-stuck .nav-btn {
+        flex: 0 0 auto; padding: .45rem .85rem; font-size: .88rem; white-space: nowrap; border-radius: .6rem;
+      }
+      nav.site-nav.is-stuck .nav-btn i { margin-right: .4rem; }
+      @media (min-width: 1300px) {
+        body.theme-coolLook nav.site-nav.is-stuck,
+        body.theme-easyRead nav.site-nav.is-stuck { width: 72rem; padding: .45rem .6rem; }
+      }
+      @media (max-width: 640px) {
+        body.theme-coolLook nav.site-nav.is-stuck,
+        body.theme-easyRead nav.site-nav.is-stuck { padding: .4rem 3.5rem .4rem .5rem; }
+        nav.site-nav.is-stuck .nav-btn { padding: .4rem .7rem; font-size: .82rem; }
+      }
+      @keyframes navPop {
+        from { opacity: 0; transform: translate(-50%, -14px) scale(.98); }
+        to   { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body.theme-coolLook nav.site-nav.is-stuck,
+        body.theme-easyRead nav.site-nav.is-stuck { animation: none; }
+      }
+
+      /* ======================================================
+         Theme toggle: a round dark / light mode icon button
+         ====================================================== */
+      body .theme-toggle {
+        top: .85rem; right: 1rem; width: 2.75rem; height: 2.75rem; padding: 0; box-sizing: border-box;
+        display: inline-flex; align-items: center; justify-content: center;
+        border-radius: 50%; font-size: 1.1rem; line-height: 1; cursor: pointer; color: #fff;
+        background: rgba(10, 10, 26, 0.78); border: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        transition: transform .2s ease, background .2s ease;
+      }
+      body .theme-toggle:hover { transform: scale(1.08); }
+      body .theme-toggle:active { transform: scale(.94); }
+      body .theme-toggle:focus-visible { outline: 2px solid #8ca7fa; outline-offset: 2px; }
+      body.theme-coolLook .theme-toggle i { color: #fcd34d; }     /* sun */
+      body.theme-easyRead .theme-toggle { background: #1e40af; border-color: rgba(255, 255, 255, 0.55); }
+      body.theme-easyRead .theme-toggle:hover { background: #1d4ed8; }
+      body.theme-easyRead .theme-toggle i { color: #fff; }        /* moon */
+      @media (max-width: 480px) {
+        body .theme-toggle { top: .88rem; right: 1rem; width: 2.5rem; height: 2.5rem; font-size: 1rem; }
+      }
+      @media (prefers-reduced-motion: reduce) { body .theme-toggle { transition: none; } }
+
     </style>
   </head>
   
   <body>
     <!-- THEME TOGGLE BUTTON -->
-    <button class="theme-toggle"></button>
+    <button class="theme-toggle" type="button" aria-label="Switch to light mode"><i class="fas fa-sun" aria-hidden="true"></i></button>
 
     <!-- Header Section with Banner -->
     <header class="gradient-bg text-white py-6">
@@ -223,13 +313,11 @@
             Website under active development
           </p>
         </div>
-      </div>
-    </header>
-    
-    <!-- Navigation -->
-    <nav class="container mx-auto px-4 mt-8">
-      <div class="flex flex-wrap justify-center gap-3 md:gap-4">
-        <a href="https://team236.github.io/"  
+          <!-- Navigation -->
+          <div class="site-nav-slot">
+            <nav class="site-nav" aria-label="Main">
+              <div class="nav-row flex flex-wrap justify-center gap-3 md:gap-4">
+                <a href="https://team236.github.io/"  
            class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
           <i class="fas fa-home mr-2"></i>Home
         </a>
@@ -259,11 +347,14 @@
           <i class="fas fa-link mr-2"></i>Links
         </a>
         <a href="https://team236.github.io/bash"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+           aria-current="page" class="nav-btn nav-current bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
           <i class="fas fa-beach mr-2"></i>𓆉 Bash@theBeach
         </a>
+              </div>
+            </nav>
+          </div>
       </div>
-    </nav>
+    </header>
     
     <!-- Main Content -->
     <main class="container mx-auto px-4 my-10">
@@ -381,8 +472,10 @@
 
         function setLabel() {
           const isCool = body.classList.contains('theme-coolLook');
-          btn.textContent = isCool ? 'Switch to EasyRead' : 'Switch to CoolLook';
-          btn.setAttribute('aria-pressed', isCool ? 'true' : 'false');
+          var label = isCool ? 'Switch to light mode' : 'Switch to dark mode';
+          btn.innerHTML = isCool ? '<i class="fas fa-sun" aria-hidden="true"></i>' : '<i class="fas fa-moon" aria-hidden="true"></i>';
+          btn.setAttribute('aria-label', label);
+          btn.title = label;
         }
 
         btn.addEventListener('click', function() {
@@ -392,6 +485,50 @@
         });
 
         setLabel();
+      })();
+    </script>
+      <!-- Nav: floats on scroll -->
+    <script>
+      (function () {
+        var nav = document.querySelector('.site-nav');
+        var slot = document.querySelector('.site-nav-slot');
+        if (!nav || !slot) return;
+        var stuck = false, ticking = false;
+
+        // the slot keeps the nav's natural height so nothing jumps when the nav pops out
+        function measure() {
+          var was = nav.classList.contains('is-stuck');
+          nav.classList.remove('is-stuck');
+          slot.style.minHeight = '';
+          slot.style.minHeight = nav.offsetHeight + 'px';
+          if (was) nav.classList.add('is-stuck');
+        }
+        // on narrow screens the floating bar scrolls sideways: bring the current page into view
+        function centerCurrent() {
+          var row = nav.querySelector('.nav-row'), cur = nav.querySelector('.nav-current');
+          if (!row || !cur || row.scrollWidth <= row.clientWidth) return;
+          row.scrollLeft += cur.getBoundingClientRect().left - row.getBoundingClientRect().left - (row.clientWidth - cur.offsetWidth) / 2;
+        }
+        function update() {
+          ticking = false;
+          var should = slot.getBoundingClientRect().top < 10;   // nav's spot has reached the top
+          if (should !== stuck) {
+            stuck = should; nav.classList.toggle('is-stuck', stuck);
+            if (stuck) centerCurrent();
+          }
+        }
+        function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', function () { measure(); onScroll(); });
+        window.addEventListener('load', function () { measure(); update(); });
+        // Tailwind's CDN builds its styles after first paint, so re-measure whenever the nav changes size
+        if ('ResizeObserver' in window) {
+          new ResizeObserver(function () {
+            if (!nav.classList.contains('is-stuck')) { slot.style.minHeight = nav.offsetHeight + 'px'; update(); }
+          }).observe(nav);
+        }
+        measure(); update();
       })();
     </script>
   </body>

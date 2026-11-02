@@ -1,6 +1,6 @@
+# [team236.github.io](https://team236.github.io)
 
-
-## A 'modern' website for FIRST Robotics Team 236, the TechnoTicks
+### A 'modern' website for FIRST Robotics Team 236, the TechnoTicks
 
 [![Live site](https://img.shields.io/badge/live%20site-team236.github.io-5a7df5)](https://team236.github.io)
 [![License: MIT](https://img.shields.io/badge/license-MIT-8b5cf6)](LICENSE)
@@ -41,7 +41,8 @@ A few pages aren't in the top bar. They're experiments and leftovers:
 
 ## Features
 
-- **Two themes.** *Cool Look* (dark, animated gradient with a frosted-glass feel) is the default. *EasyRead* (light, high contrast) is one tap away on the button in the top right corner.
+- **Dark and light mode.** *Cool Look* (dark, animated gradient with a frosted-glass feel) is the default and *EasyRead* (light, high contrast) is the other. Switch with the round sun/moon button in the top right corner.
+- **Floating nav.** The nav buttons sit inside the top banner. Scroll down and they pop out into their own floating bar (the banner itself scrolls away), with the sun/moon button tucked into its right end. The page you're on is highlighted, and on small screens the bar swipes sideways.
 - **Robot Archive.** One card per season, with a sticky "jump to a season" bar, photos or embedded slideshows, and links to Statbotics, The Blue Alliance and 3D models. Each card has a copy-link button for sharing a specific year.
 - **Clean URLs.** Links don't use `.html`, so the About page is `/about_us`, not `/about_us.html`. GitHub Pages serves both.
 - **Mobile friendly.** The pages are responsive and work on phones.
@@ -125,7 +126,7 @@ You don't need Git installed. Open any file on GitHub, click the pencil icon to 
 ### Adding a page
 
 1. Copy an existing page (`about_us.html` is a good template) and change its content.
-2. Add it to the nav bar **on every page**, using the extensionless URL (`https://team236.github.io/your_page`).
+2. Add it to the nav buttons **on every page** (inside the `<nav class="site-nav">` in the header), using the extensionless URL (`https://team236.github.io/your_page`). Give the button for the page itself the `nav-current` class and `aria-current="page"` so it's highlighted.
 3. File names are case-sensitive on GitHub Pages: `Robot_archive` works, `robot_archive` doesn't.
 
 ## Repo layout
@@ -146,7 +147,7 @@ You don't need Git installed. Open any file on GitHub, click the pencil icon to 
 
 Code by Woody, Mike, and GitHub user ko-sako "Kayo Osako."
 
-In addition, some code was made with help from Deepseek AI and Claude Code.
+Thanks to the Deepsite AI model for code help. In addition, some code was made with help from Deepseek AI.
 
 Thanks,
 Woody (self-proclaimed head website coder)
