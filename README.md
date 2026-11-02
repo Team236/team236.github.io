@@ -1,6 +1,6 @@
-# [team236.github.io](https://team236.github.io)
 
-### A 'modern' website for FIRST Robotics Team 236, the TechnoTicks
+
+## A 'modern' website for FIRST Robotics Team 236, the TechnoTicks
 
 [![Live site](https://img.shields.io/badge/live%20site-team236.github.io-5a7df5)](https://team236.github.io)
 [![License: MIT](https://img.shields.io/badge/license-MIT-8b5cf6)](LICENSE)
