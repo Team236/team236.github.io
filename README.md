@@ -146,7 +146,7 @@ You don't need Git installed. Open any file on GitHub, click the pencil icon to 
 
 Code by Woody, Mike, and GitHub user ko-sako "Kayo Osako."
 
-Thanks to the Deepsite AI model for code help. In addition, some code was made with help from Deepseek AI.
+In addition, some code was made with help from Deepseek AI and Claude Code.
 
 Thanks,
 Woody (self-proclaimed head website coder)
