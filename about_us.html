@@ -208,6 +208,131 @@
       @media (max-width: 480px) {
         .theme-toggle { top: 0.6rem; right: 0.6rem; padding: 0.45rem 0.7rem; font-size: 0.9rem; }
       }
+    
+      /* ======================================================
+         ABOUT US  (shares its look with the Robot Archive)
+         ====================================================== */
+      body {
+        --ra-card: rgba(15, 15, 32, 0.74);
+        --ra-card-border: rgba(255, 255, 255, 0.12);
+        --ra-text: #ffffff;
+        --ra-muted: rgba(255, 255, 255, 0.8);
+        --ra-chip: rgba(255, 255, 255, 0.08);
+        --ra-chip-border: rgba(255, 255, 255, 0.2);
+        --ra-accent: #8ca7fa;
+        --ra-accent2: #c084fc;
+        --ra-shadow: 0 24px 44px -22px rgba(0, 0, 0, 0.7);
+      }
+      body.theme-easyRead {
+        --ra-card: #ffffff;
+        --ra-card-border: rgba(30, 64, 175, 0.16);
+        --ra-text: #111111;
+        --ra-muted: #3f4a5c;
+        --ra-chip: rgba(59, 91, 219, 0.08);
+        --ra-chip-border: rgba(59, 91, 219, 0.35);
+        --ra-accent: #3b5bdb;
+        --ra-accent2: #7c3aed;
+        --ra-shadow: 0 14px 30px -16px rgba(30, 64, 175, 0.4);
+      }
+
+      .ab-main { width: 100%; max-width: 64rem; margin: 0 auto; padding: 0 1rem 4rem; box-sizing: border-box; color: var(--ra-text); }
+
+      /* ---- Hero ---- */
+      .ab-hero {
+        position: relative; overflow: hidden; isolation: isolate; margin-top: 2rem;
+        min-height: clamp(13rem, 19vw, 15.5rem); display: flex; align-items: flex-end;
+        border-radius: 1.5rem; border: 1px solid var(--ra-card-border);
+        background: #0a0a1a; box-shadow: var(--ra-shadow);
+      }
+      .ab-hero::before {                     /* big team number */
+        content: '236'; position: absolute; right: clamp(.5rem, 4vw, 3rem); top: 50%; transform: translateY(-50%);
+        z-index: -1; font-size: clamp(8rem, 22vw, 14rem); font-weight: 700; line-height: 1; letter-spacing: -0.04em;
+        background: linear-gradient(135deg, #8ca7fa, #c084fc);
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        opacity: .5;
+      }
+      .ab-hero::after {
+        content: ''; position: absolute; inset: 0; z-index: -2;
+        background:
+          radial-gradient(circle at 8% 15%, rgba(128, 0, 255, 0.38), transparent 55%),
+          radial-gradient(circle at 92% 90%, rgba(90, 125, 245, 0.35), transparent 50%);
+      }
+      .ab-hero-inner { position: relative; padding: clamp(1.25rem, 3vw, 2rem); color: #fff; }
+      .ab-eyebrow { margin: 0 0 .35rem; font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #8ca7fa; }
+      .ab-hero h1 { margin: 0; font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+      .ab-sub { margin: .6rem 0 0; font-size: 1.05rem; color: rgba(255, 255, 255, 0.85); }
+      @media (max-width: 600px) { .ab-hero::before { opacity: .22; } }
+
+      /* ---- Quick facts ---- */
+      .ab-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+      .ab-stats li {
+        display: flex; flex-direction: column; align-items: center; gap: .15rem; padding: 1rem .75rem; text-align: center;
+        border-radius: 1rem; background: var(--ra-card); border: 1px solid var(--ra-card-border); box-shadow: var(--ra-shadow);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      }
+      .ab-stats b {
+        font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 700; line-height: 1.1;
+        background: linear-gradient(135deg, var(--ra-accent), var(--ra-accent2));
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+      }
+      .ab-stats span { font-size: .85rem; color: var(--ra-muted); }
+
+      /* ---- Cards ---- */
+      .ab-card {
+        margin-top: 1.5rem; padding: clamp(1.25rem, 3.5vw, 2.5rem); border-radius: 1.25rem;
+        background: var(--ra-card); border: 1px solid var(--ra-card-border); box-shadow: var(--ra-shadow);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      }
+      .ab-story p { margin: 0 0 1.1rem; font-size: 1.05rem; line-height: 1.75; color: var(--ra-muted); }
+      .ab-story p:first-child { font-size: 1.3rem; line-height: 1.6; color: var(--ra-text); }
+      .ab-story p:last-child { margin-bottom: 0; }
+      @media (max-width: 600px) { .ab-story p:first-child { font-size: 1.12rem; } .ab-story p { font-size: 1rem; } }
+
+      /* ---- Mission ---- */
+      .ab-section { margin-top: 2.5rem; }
+      .ab-h2 { display: flex; align-items: center; gap: .75rem; margin: 0 0 1rem; font-size: 1.9rem; font-weight: 700; color: var(--ra-text); }
+      .ab-h2::before { content: ''; width: .35rem; height: 1.9rem; border-radius: 999px; background: linear-gradient(180deg, var(--ra-accent), var(--ra-accent2)); }
+      .ab-mission { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+      @media (min-width: 700px) { .ab-mission { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      .ab-mission li {
+        display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.25rem; border-radius: 1rem;
+        background: var(--ra-card); border: 1px solid var(--ra-card-border); box-shadow: var(--ra-shadow);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        transition: transform .25s ease, border-color .25s ease;
+      }
+      .ab-mission li:hover { transform: translateY(-3px); border-color: var(--ra-accent); }
+      .ab-mission p { margin: 0; font-size: 1.05rem; line-height: 1.5; color: var(--ra-text); }
+      .ab-icon {
+        flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem;
+        border-radius: .9rem; font-size: 1.2rem; color: #fff; background: linear-gradient(135deg, #5a7df5, #8b5cf6);
+      }
+
+      /* ---- Hall of Fame ---- */
+      .ab-fame {
+        display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; padding: 1.25rem 1.5rem; border-radius: 1.25rem; color: #fff;
+        background: linear-gradient(135deg, #1e40af 0%, #6d3fd6 100%); box-shadow: var(--ra-shadow);
+      }
+      .ab-fame p { margin: 0; font-size: clamp(1.05rem, 2.6vw, 1.35rem); font-weight: 500; line-height: 1.4; }
+      .ab-fame-icon {
+        flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 3.2rem; height: 3.2rem;
+        border-radius: 50%; font-size: 1.4rem; background: rgba(255, 255, 255, 0.18);
+      }
+
+      /* ---- Video ---- */
+      .ab-video {
+        margin: 1.5rem auto 0; max-width: 52rem; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 1.25rem;
+        border: 1px solid var(--ra-card-border); background: #000; box-shadow: var(--ra-shadow);
+      }
+      .ab-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+      /* ---- Scroll reveal ---- */
+      .reveal-ready .ab-reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+      .reveal-ready .ab-reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal-ready .ab-reveal { opacity: 1; transform: none; transition: none; }
+        .ab-mission li { transition: none; }
+      }
+
     </style>
   </head>
   
@@ -238,31 +363,31 @@
           <i class="fas fa-home mr-2"></i>Home
         </a>
         
-        <a href="https://team236.github.io/about_us.html"  
+        <a href="https://team236.github.io/about_us"  
            class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
           <i class="fas fa-users mr-2"></i>About Us
         </a>
         
-        <a href="https://team236.github.io/New_members.html"  
+        <a href="https://team236.github.io/New_members"  
            class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
           <i class="fas fa-user-plus mr-2"></i>New Members
         </a>
         
-        <a href="https://team236.github.io/Contact_Us.html"  
+        <a href="https://team236.github.io/Contact_Us"  
            class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
           <i class="fas fa-envelope mr-2"></i>Contact Us
         </a>
         
-        <a href="https://team236.github.io/Robot_archive.html"  
+        <a href="https://team236.github.io/Robot_archive"  
            class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
           <i class="fas fa-robot mr-2"></i>Robot Archive
         </a>
         
-        <a href="https://team236.github.io/Links.html"  
+        <a href="https://team236.github.io/Links"  
            class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
           <i class="fas fa-link mr-2"></i>Links
         </a>
-        <a href="https://team236.github.io/bash.html"  
+        <a href="https://team236.github.io/bash"  
            class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
           <i class="fas fa-beach mr-2"></i>𓆉 Bash@theBeach
         </a>
@@ -270,33 +395,50 @@
     </nav>
     
     <!-- Main Content -->
-    <center>
-    <br>
-      <h1 style="font-size:36px; ">About Us</h1>
-      </center>
-    <main class="container mx-auto px-4 my-10">
-      <div class="robot-slideshow overflow-hidden">
-     
-    </section>
-    <center>
-<p>FIRST Team 236 was founded in 1999 by a group of like-minded, forward-thinking students, teachers and mentors with an interest in cutting edge technology.  FIRST offered a fun way to learn about robotics, design and computer programming.
+    <main class="ab-main">
+      <!-- Hero -->
+      <section class="ab-hero" aria-labelledby="ab-title">
+        <div class="ab-hero-inner">
+          <p class="ab-eyebrow">FIRST Team 236</p>
+          <h1 id="ab-title">About Us</h1>
+          <p class="ab-sub">The TechnoTicks</p>
+        </div>
+      </section>
 
-Our team encompasses students in grades 9-12, teachers and adult mentors.  All are welcome.  Through the years, the team has grown to involve more than 10 percent (At times) of the LOLHS's student body & students from East Lyme high school, and it is well known throughout the community for its enthusiasm for everything from robots to community service.
-
-We strongly believe that our mentors' mission is to  support and encourage our students and to pass on their skills and experience.  Students get as much hands-on experience as possible and work closely with mentors.</p>
-</center>
-    <section>
-      <h2>Our Mission</h2>
-      <ul>
-        <li>• To inspire and educate students in the fields of STEM.</li>
-        <li>• To foster a culture of Gracious-Professionalism.</li>
-        <li>• To compete at the highest level of FIRST Robotics Competition.</li>
-        <li>• To give back to our community through outreach and mentorship.</li>
+      <!-- Quick facts -->
+      <ul class="ab-stats ab-reveal">
+        <li><b>1999</b><span>Founded</span></li>
+        <li><b>9-12</b><span>Grades on the team</span></li>
+        <li><b>10%+</b><span>of LOLHS students, at times</span></li>
       </ul>
-      <p>Team 236 is proud to be a Hall of Fame team since 2009.</p>
-      <center>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/NmzCLohIZLg?si=zLCAVCOIDyQxwBZ5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </center>
+
+      <!-- Story -->
+      <section class="ab-card ab-story ab-reveal">
+        <p>FIRST Team 236 was founded in 1999 by a group of like-minded, forward-thinking students, teachers and mentors with an interest in cutting edge technology.  FIRST offered a fun way to learn about robotics, design and computer programming.</p>
+        <p>Our team encompasses students in grades 9-12, teachers and adult mentors.  All are welcome.  Through the years, the team has grown to involve more than 10 percent (At times) of the LOLHS's student body &amp; students from East Lyme high school, and it is well known throughout the community for its enthusiasm for everything from robots to community service.</p>
+        <p>We strongly believe that our mentors' mission is to  support and encourage our students and to pass on their skills and experience.  Students get as much hands-on experience as possible and work closely with mentors.</p>
+      </section>
+
+      <!-- Mission -->
+      <section class="ab-section ab-reveal" aria-labelledby="ab-mission">
+        <h2 id="ab-mission" class="ab-h2">Our Mission</h2>
+        <ul class="ab-mission">
+          <li><span class="ab-icon"><i class="fas fa-flask" aria-hidden="true"></i></span><p>To inspire and educate students in the fields of STEM.</p></li>
+          <li><span class="ab-icon"><i class="fas fa-handshake" aria-hidden="true"></i></span><p>To foster a culture of Gracious-Professionalism.</p></li>
+          <li><span class="ab-icon"><i class="fas fa-trophy" aria-hidden="true"></i></span><p>To compete at the highest level of FIRST Robotics Competition.</p></li>
+          <li><span class="ab-icon"><i class="fas fa-hands-helping" aria-hidden="true"></i></span><p>To give back to our community through outreach and mentorship.</p></li>
+        </ul>
+      </section>
+
+      <!-- Hall of Fame -->
+      <section class="ab-fame ab-reveal">
+        <span class="ab-fame-icon"><i class="fas fa-award" aria-hidden="true"></i></span>
+        <p>Team 236 is proud to be a Hall of Fame team since 2009.</p>
+      </section>
+
+      <!-- Video -->
+      <div class="ab-video ab-reveal">
+        <iframe src="https://www.youtube.com/embed/NmzCLohIZLg?si=zLCAVCOIDyQxwBZ5" title="YouTube video player" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </main>
     
@@ -393,6 +535,19 @@ We strongly believe that our mentors' mission is to  support and encourage our s
         });
 
         setLabel();
+      })();
+    </script>
+      <!-- About page behaviour -->
+    <script>
+      (function () {
+        var els = document.querySelectorAll('.ab-reveal');
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!('IntersectionObserver' in window) || reduce) return;
+        document.documentElement.classList.add('reveal-ready');
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { rootMargin: '0px 0px -8% 0px' });
+        Array.prototype.forEach.call(els, function (el) { io.observe(el); });
       })();
     </script>
   </body>
