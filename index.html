@@ -249,6 +249,316 @@
       }
       @media (prefers-reduced-motion: reduce) { body .theme-toggle { transition: none; } }
 
+    
+      /* ======================================================
+         FRONT PAGE
+         hero slideshow + stats strip (254), deep-space dark look and tall
+         label tiles (118), big type and section placement (Simbotics)
+         ====================================================== */
+      body {
+        --fp-card: rgba(12, 12, 30, 0.78);
+        --fp-border: rgba(255, 255, 255, 0.12);
+        --fp-text: #ffffff;
+        --fp-muted: rgba(255, 255, 255, 0.78);
+        --fp-chip: rgba(255, 255, 255, 0.08);
+        --fp-chip-border: rgba(255, 255, 255, 0.2);
+        --fp-accent: #8ca7fa;
+        --fp-accent2: #c084fc;
+        --fp-gold: #fcd34d;
+        --fp-shadow: 0 24px 44px -22px rgba(0, 0, 0, 0.75);
+      }
+      body.theme-easyRead {
+        --fp-card: #ffffff;
+        --fp-border: rgba(30, 64, 175, 0.16);
+        --fp-text: #111111;
+        --fp-muted: #3f4a5c;
+        --fp-chip: rgba(59, 91, 219, 0.08);
+        --fp-chip-border: rgba(59, 91, 219, 0.35);
+        --fp-accent: #3b5bdb;
+        --fp-accent2: #7c3aed;
+        --fp-gold: #b45309;
+        --fp-shadow: 0 14px 30px -16px rgba(30, 64, 175, 0.4);
+      }
+
+      .fp-main { width: 100%; max-width: 72rem; margin: 0 auto; padding: 0 1rem 4rem; box-sizing: border-box; color: var(--fp-text); }
+
+      /* ---------- buttons ---------- */
+      .fp-btn {
+        display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 1.35rem; border-radius: .75rem;
+        font-size: 1rem; font-weight: 500; line-height: 1.2; text-decoration: none; cursor: pointer;
+        transition: transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease;
+      }
+      .fp-btn:hover { transform: translateY(-2px); }
+      .fp-btn-primary { color: #fff; background: #1e40af; }
+      .fp-btn-primary:hover { background: #1d4ed8; box-shadow: 0 10px 22px -10px rgba(29, 78, 216, 0.9); }
+      .fp-btn-ghost { color: #fff; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.45); backdrop-filter: blur(6px); }
+      .fp-btn-ghost:hover { background: rgba(255, 255, 255, 0.2); }
+      .fp-btn-light { color: #1e3a8a; background: #fff; }
+      .fp-btn-light:hover { box-shadow: 0 10px 22px -10px rgba(0, 0, 0, 0.6); }
+      .fp-btn-outline { color: var(--fp-text); background: transparent; border: 1px solid var(--fp-chip-border); }
+      .fp-btn-outline:hover { border-color: var(--fp-accent); }
+      .fp-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+      /* ---------- hero: the page background at the top, a rounded card once you scroll ---------- */
+      .fp-hero {
+        --g: max(1rem, calc((100% - 72rem) / 2 + 1rem));       /* the page's side gutter, so the card lines up with everything below */
+        position: relative; isolation: isolate; display: flex; align-items: flex-end; touch-action: pan-y;
+        margin-top: calc(var(--hdr-h, 0px) * -1); padding-top: var(--hdr-h, 0px);       /* slides up behind the header */
+        min-height: calc(var(--hdr-h, 0px) + clamp(30rem, 74vh, 44rem));
+      }
+      .fp-hero:focus-visible { outline: 3px solid var(--fp-accent); outline-offset: -6px; }
+      /* the visible slideshow: full-bleed at first; script grows --ct / --cx / --cr as you scroll */
+      .fp-clip {
+        position: absolute; z-index: -1; overflow: hidden;
+        top: var(--ct, 0px); left: var(--cx, 0px); right: var(--cx, 0px); bottom: 0; border-radius: var(--cr, 0px);
+        box-shadow: 0 24px 44px -22px rgba(0, 0, 0, calc(0.75 * var(--fp-p, 0)));
+        background:
+          radial-gradient(1.5px 1.5px at 12% 22%, rgba(255,255,255,.8), transparent 60%),
+          radial-gradient(1px 1px at 33% 68%, rgba(255,255,255,.6), transparent 60%),
+          radial-gradient(1.5px 1.5px at 58% 18%, rgba(255,255,255,.7), transparent 60%),
+          radial-gradient(1px 1px at 76% 52%, rgba(255,255,255,.55), transparent 60%),
+          radial-gradient(1.5px 1.5px at 91% 30%, rgba(255,255,255,.7), transparent 60%),
+          radial-gradient(circle at 15% 15%, rgba(128, 0, 255, 0.38), transparent 55%),
+          radial-gradient(circle at 90% 85%, rgba(30, 64, 175, 0.5), transparent 55%),
+          #050514;
+      }
+      .fp-clip::before {      /* the card's outline: drawn on top so it takes no room (and shows no seam) until the card forms */
+        content: ''; position: absolute; inset: 0; z-index: 4; pointer-events: none; border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, calc(0.14 * var(--fp-p, 0)));
+      }
+      body.theme-easyRead .fp-clip::before { border-color: rgba(30, 64, 175, calc(0.16 * var(--fp-p, 0))); }
+      body.theme-easyRead .fp-clip { box-shadow: 0 14px 30px -16px rgba(30, 64, 175, calc(0.4 * var(--fp-p, 0))); }
+      .fp-clip::after {       /* a soft dark top so the logo and nav read well over any photo; fades out as the card forms */
+        content: ''; position: absolute; left: 0; right: 0; top: 0; z-index: 3; pointer-events: none;
+        height: calc(var(--hdr-h, 0px) + 4rem); opacity: calc(1 - var(--fp-p, 0));
+        background: linear-gradient(180deg, rgba(5, 5, 20, 0.62), rgba(5, 5, 20, 0));
+      }
+      .fp-stage { position: absolute; inset: 0; }
+      .fp-shade {
+        position: absolute; inset: 0; z-index: 2; pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(5, 5, 20, 0.88) 0%, rgba(5, 5, 20, 0.5) 38%, rgba(5, 5, 20, 0) 72%),
+          linear-gradient(0deg, rgba(5, 5, 20, 0.85) 0%, rgba(5, 5, 20, 0) 42%);
+      }
+
+      /* the header floats over the slideshow; its own background fades in as you scroll */
+      header.gradient-bg { position: relative; z-index: 2; background: transparent !important; }
+      header.gradient-bg::before { content: ''; position: absolute; inset: 0; z-index: -1; opacity: var(--fp-hbg, 0); background: rgba(20, 20, 60, 0.85); }
+      body.theme-easyRead header.gradient-bg::before { background: linear-gradient(135deg, #8ca7fa 0%, #5a7df5 100%); }
+
+      /* slides */
+      .fp-slide { position: absolute; inset: 0; margin: 0; overflow: hidden; opacity: 0; transition: opacity .9s ease; pointer-events: none; }
+      .fp-slide.is-active { opacity: 1; }
+      .fp-slide .fp-bg {
+        display: none; position: absolute; inset: -10%; background-size: cover; background-position: center;
+        filter: blur(30px) saturate(1.25) brightness(.5);
+      }
+      .fp-slide[data-fit="contain"] .fp-bg { display: block; }
+      .fp-slide img, .fp-slide video {
+        position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center;
+        user-select: none; -webkit-user-drag: none;
+      }
+      .fp-slide[data-fit="contain"] img, .fp-slide[data-fit="contain"] video { object-fit: contain; object-position: var(--fp-pos, 96% 50%); }
+      .fp-slide.is-active img { animation: fpDrift 9s ease-out both; }
+      @keyframes fpDrift { from { transform: scale(1); } to { transform: scale(1.06); } }
+
+      .fp-loading::after {
+        content: ''; position: absolute; left: 50%; top: 50%; width: 2.2rem; height: 2.2rem; margin: -1.1rem 0 0 -1.1rem; z-index: 1;
+        border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.25); border-top-color: #fff; animation: fpSpin .9s linear infinite;
+      }
+      @keyframes fpSpin { to { transform: rotate(360deg); } }
+
+      /* copy (bottom left, like Simbotics) */
+      .fp-copy { position: relative; z-index: 1; max-width: calc(58rem + var(--g)); padding: 0 clamp(1.5rem, 4vw, 3.25rem) clamp(2.75rem, 5vw, 4.25rem) calc(var(--g) + clamp(1.5rem, 4vw, 3.25rem)); color: #fff; pointer-events: none; }
+      .fp-copy a { pointer-events: auto; }
+      .fp-kicker { margin: 0 0 .9rem; font-size: .85rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #8ca7fa; }
+      .fp-title { margin: 0; line-height: .95; }
+      .fp-title-small { display: block; font-size: clamp(1.4rem, 3.2vw, 2.2rem); font-weight: 500; letter-spacing: .02em; color: rgba(255, 255, 255, 0.9); }
+      .fp-title-big { display: block; margin-top: .25rem; font-size: clamp(2.6rem, 7.6vw, 5.5rem); font-weight: 700; letter-spacing: -0.03em; color: #fff; }
+      .fp-sub { margin: 1rem 0 1.5rem; font-size: clamp(1.05rem, 2vw, 1.35rem); color: rgba(255, 255, 255, 0.88); }
+
+      /* caption + controls (bottom right, like 254's captioned hero) */
+      .fp-ui {
+        position: absolute; z-index: 2; right: calc(var(--g) + clamp(1rem, 3vw, 2rem)); bottom: clamp(2rem, 4vw, 3rem);
+        display: flex; flex-direction: column; align-items: flex-end; gap: .85rem; max-width: 22rem; text-align: right; color: #fff;
+      }
+      .fp-cap { display: flex; flex-direction: column; align-items: flex-end; gap: .2rem; }
+      .fp-count { font-size: .8rem; font-weight: 700; letter-spacing: .14em; color: #fcd34d; font-variant-numeric: tabular-nums; }
+      .fp-cap-text { font-size: 1.1rem; font-weight: 500; line-height: 1.3; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7); }
+      .fp-cap-text:empty { display: none; }
+      .fp-controls { display: flex; gap: .5rem; }
+      .fp-ctl {
+        display: inline-flex; align-items: center; justify-content: center; width: 2.6rem; height: 2.6rem; padding: 0; cursor: pointer;
+        border-radius: 50%; color: #fff; font-size: .95rem; background: rgba(10, 10, 26, 0.7); border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(6px); transition: transform .2s ease, background .2s ease;
+      }
+      .fp-ctl:hover { transform: scale(1.08); background: rgba(30, 64, 175, 0.9); }
+      .fp-ctl:focus-visible { outline: 2px solid #8ca7fa; outline-offset: 2px; }
+      .fp-hero.fp-single .fp-controls, .fp-hero.fp-single .fp-progress { display: none; }
+
+      /* progress segments (click to jump) */
+      .fp-progress { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; gap: .3rem; padding: 0 calc(var(--g) + clamp(1.5rem, 4vw, 3.25rem)) 1rem; }
+      .fp-seg { position: relative; flex: 1 1 0; min-width: 6px; height: 1.1rem; padding: 0; border: 0; background: transparent; cursor: pointer; }
+      .fp-seg::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 4px; margin-top: -2px; border-radius: 999px; background: rgba(255, 255, 255, 0.28); }
+      .fp-seg-fill { position: absolute; left: 0; top: 50%; height: 4px; margin-top: -2px; width: 0; border-radius: 999px; background: #fff; }
+      .fp-seg.is-done .fp-seg-fill { width: 100%; background: rgba(255, 255, 255, 0.75); }
+      .fp-seg.is-now .fp-seg-fill { background: linear-gradient(90deg, #8ca7fa, #fcd34d); }
+      .fp-seg:focus-visible { outline: 2px solid #8ca7fa; outline-offset: 1px; }
+
+      @media (max-width: 700px) {
+        .fp-hero { min-height: calc(var(--hdr-h, 0px) + 36rem); }
+        .fp-shade {
+          background:
+            linear-gradient(0deg, rgba(5, 5, 20, 0.92) 0%, rgba(5, 5, 20, 0.55) 48%, rgba(5, 5, 20, 0.1) 100%);
+        }
+        .fp-ui { top: 2.5rem; bottom: auto; left: calc(var(--g) + 1rem); right: calc(var(--g) + 1rem); max-width: none; flex-direction: row; align-items: center; justify-content: space-between; text-align: left; }
+        .fp-cap { align-items: flex-start; }
+        .fp-cap-text { font-size: .95rem; }
+      }
+
+      /* ---------- numbers (254-style strip), live from The Blue Alliance ---------- */
+      .fp-main [hidden] { display: none !important; }
+      .fp-stats-wrap { margin-top: 1.25rem; }
+      .fp-stats {
+        display: flex; flex-wrap: wrap; gap: 1px; margin: 0; padding: 0; list-style: none; overflow: hidden;
+        border-radius: 1.25rem; background: var(--fp-border); border: 1px solid var(--fp-border); box-shadow: var(--fp-shadow);
+      }
+      .fp-stats li {
+        flex: 1 1 9.5rem; display: flex; flex-direction: column; align-items: center; gap: .25rem; padding: 1.4rem .75rem; text-align: center;
+        background: var(--fp-card); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      }
+      .fp-stats b {
+        font-size: clamp(2rem, 5.2vw, 3.4rem); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums;
+        background: linear-gradient(135deg, var(--fp-accent), var(--fp-accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+      }
+      .fp-stats span { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--fp-muted); }
+      .fp-skel b, .fp-skel span {
+        display: block; border-radius: .5rem; -webkit-text-fill-color: transparent;
+        background: linear-gradient(90deg, var(--fp-chip) 25%, var(--fp-chip-border) 50%, var(--fp-chip) 75%); background-size: 200% 100%; animation: fpShimmer 1.4s linear infinite;
+      }
+      .fp-skel b { width: 4.5rem; height: 2.2rem; }
+      .fp-skel span { width: 6rem; height: .7rem; margin-top: .4rem; }
+      @keyframes fpShimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+      .fp-tba-note, .fp-field-note { margin: .6rem .25rem 0; font-size: .85rem; color: var(--fp-muted); }
+      .fp-tba-note { text-align: right; }
+      .fp-tba-note a, .fp-field-note a { color: var(--fp-accent); text-decoration: underline; }
+
+      /* ---------- on the field: season results from The Blue Alliance ---------- */
+      .fp-season-sum { margin: .75rem 0 0; font-size: 1.15rem; color: var(--fp-muted); }
+      .fp-field-note { margin: .5rem 0 0; font-size: .9rem; }
+      .fp-group-h { margin: 2.25rem 0 0; font-size: 1.2rem; font-weight: 700; color: var(--fp-text); }
+      .fp-events { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+      .fp-group-h + .fp-events { margin-top: .9rem; }
+      .fp-event {
+        display: flex; flex-direction: column; gap: .6rem; padding: 1.3rem; border-radius: 1.25rem;
+        background: var(--fp-card); border: 1px solid var(--fp-border); box-shadow: var(--fp-shadow);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      }
+      .fp-event-top { display: flex; flex-wrap: wrap; gap: .4rem; }
+      .fp-chip { padding: .2rem .65rem; border-radius: 999px; font-size: .75rem; font-weight: 500; letter-spacing: .04em; color: var(--fp-text); background: var(--fp-chip); border: 1px solid var(--fp-chip-border); }
+      .fp-chip-hot { color: #fff; border-color: transparent; background: linear-gradient(135deg, #5a7df5, #8b5cf6); }
+      .fp-event h3 { margin: 0; font-size: 1.2rem; font-weight: 700; line-height: 1.25; color: var(--fp-text); }
+      .fp-event-loc { margin: 0; font-size: .9rem; color: var(--fp-muted); }
+      .fp-event-result { margin: 0; font-size: .95rem; line-height: 1.5; color: var(--fp-text); }
+      .fp-badges { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0; padding: 0; list-style: none; }
+      .fp-badges li { padding: .25rem .6rem; border-radius: .5rem; font-size: .8rem; font-weight: 500; color: var(--fp-muted); background: var(--fp-chip); border: 1px solid var(--fp-chip-border); }
+      .fp-badges li.gold { color: var(--fp-gold); border-color: var(--fp-gold); background: rgba(252, 211, 77, 0.12); }
+      .fp-event-link { margin-top: auto; padding-top: .4rem; font-size: .9rem; font-weight: 500; color: var(--fp-accent); text-decoration: none; }
+      .fp-event-link:hover { text-decoration: underline; }
+
+      /* ---------- sections ---------- */
+      .fp-sec { margin-top: clamp(3rem, 7vw, 5.5rem); }
+      .fp-eyebrow { margin: 0 0 .6rem; font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--fp-accent); }
+      .fp-h2 { margin: 0; font-size: clamp(1.9rem, 4.4vw, 3rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--fp-text); }
+      .fp-who { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+      @media (min-width: 900px) { .fp-who { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3.5rem; align-items: start; } }
+      .fp-prose p { margin: 0 0 1.1rem; font-size: 1.1rem; line-height: 1.75; color: var(--fp-muted); }
+      .fp-prose p:first-child { font-size: 1.2rem; color: var(--fp-text); }
+      .fp-link { display: inline-flex; align-items: center; gap: .5rem; font-weight: 500; color: var(--fp-accent); text-decoration: none; }
+      .fp-link i { transition: transform .2s ease; }
+      .fp-link:hover i { transform: translateX(4px); }
+
+      /* mission: tall label tiles (118) */
+      .fp-goals { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+      @media (max-width: 960px) { .fp-goals { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 520px) { .fp-goals { grid-template-columns: minmax(0, 1fr); } }
+      .fp-goal {
+        position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; min-height: 21rem; padding: 1.4rem;
+        border-radius: 1.25rem; color: #fff; box-shadow: var(--fp-shadow); transition: transform .25s ease;
+      }
+      .fp-goal:hover { transform: translateY(-4px); }
+      @media (max-width: 960px) { .fp-goal { min-height: 15rem; } }
+      @media (max-width: 520px) { .fp-goal { min-height: 11.5rem; } }
+      .fp-goal-1 { background: linear-gradient(160deg, #1e3a8a, #3b5bdb); }
+      .fp-goal-2 { background: linear-gradient(160deg, #312e81, #7c3aed); }
+      .fp-goal-3 { background: linear-gradient(160deg, #1e40af, #6d28d9); }
+      .fp-goal-4 { background: linear-gradient(160deg, #4c1d95, #c026d3); }
+      .fp-goal-ico { position: absolute; top: 1rem; right: 1.1rem; font-size: 5.5rem; opacity: .16; }
+      .fp-goal h3 { margin: 0 0 .5rem; font-size: 1.15rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+      .fp-goal p { margin: 0; font-size: .98rem; line-height: 1.5; color: rgba(255, 255, 255, 0.9); }
+
+      /* explore cards (Simbotics) */
+      .fp-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+      @media (max-width: 1000px) { .fp-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 560px) { .fp-cards { grid-template-columns: minmax(0, 1fr); } }
+      .fp-card {
+        display: flex; flex-direction: column; gap: .5rem; padding: 1.4rem; border-radius: 1.25rem; text-decoration: none; color: var(--fp-text);
+        background: var(--fp-card); border: 1px solid var(--fp-border); box-shadow: var(--fp-shadow);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: transform .25s ease, border-color .25s ease;
+      }
+      .fp-card:hover { transform: translateY(-4px); border-color: var(--fp-accent); }
+      .fp-card-ico {
+        display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; margin-bottom: .5rem;
+        border-radius: .9rem; font-size: 1.2rem; color: #fff; background: linear-gradient(135deg, #5a7df5, #8b5cf6);
+      }
+      .fp-card h3 { margin: 0; font-size: 1.3rem; font-weight: 700; }
+      .fp-card p { margin: 0; font-size: .98rem; line-height: 1.55; color: var(--fp-muted); }
+      .fp-card-go { margin-top: auto; padding-top: .75rem; font-size: .95rem; font-weight: 500; color: var(--fp-accent); }
+      .fp-card-go i { transition: transform .2s ease; }
+      .fp-card:hover .fp-card-go i { transform: translateX(4px); }
+
+      /* latest robot */
+      .fp-robot {
+        display: grid; grid-template-columns: minmax(0, 1fr); overflow: hidden; border-radius: 1.5rem;
+        background: var(--fp-card); border: 1px solid var(--fp-border); box-shadow: var(--fp-shadow);
+      }
+      @media (min-width: 900px) { .fp-robot { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); } }
+      .fp-robot-copy { display: flex; flex-direction: column; gap: 1rem; padding: clamp(1.5rem, 4vw, 3rem); }
+      .fp-robot-copy .fp-eyebrow { margin: 0; }
+      .fp-robot-copy .fp-h2 { font-size: clamp(2.4rem, 6vw, 4rem); }
+      .fp-robot-copy > p:not(.fp-eyebrow) { margin: 0; font-size: 1.15rem; line-height: 1.6; color: var(--fp-muted); }
+      .fp-robot-art {
+        position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 14rem; overflow: hidden; color: #fff;
+        background: radial-gradient(circle at 25% 20%, rgba(139, 92, 246, 0.6), transparent 55%), radial-gradient(circle at 80% 90%, rgba(59, 91, 219, 0.7), transparent 55%), #0b1030;
+      }
+      .fp-robot-art span {
+        font-size: clamp(5rem, 15vw, 9.5rem); font-weight: 700; line-height: 1; letter-spacing: -0.04em;
+        background: linear-gradient(135deg, #8ca7fa, #c084fc); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+      }
+      .fp-robot-art em { margin-top: .25rem; font-style: normal; font-size: 1.1rem; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); }
+
+      /* join banner */
+      .fp-join {
+        display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 1.5rem; margin-top: clamp(3rem, 7vw, 5.5rem); padding: clamp(1.5rem, 4vw, 2.5rem);
+        border-radius: 1.5rem; color: #fff; background: linear-gradient(135deg, #1e40af 0%, #6d3fd6 100%); box-shadow: var(--fp-shadow);
+      }
+      .fp-join-ico { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 50%; font-size: 1.5rem; background: rgba(255, 255, 255, 0.18); }
+      .fp-join-copy { flex: 1 1 18rem; }
+      .fp-join h2 { margin: 0 0 .35rem; font-size: clamp(1.6rem, 3.6vw, 2.25rem); font-weight: 700; line-height: 1.15; }
+      .fp-join p { margin: 0; font-size: 1.05rem; color: rgba(255, 255, 255, 0.9); }
+
+      /* scroll reveal */
+      .reveal-ready .fp-rv { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+      .reveal-ready .fp-rv.in { opacity: 1; transform: none; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .fp-skel b, .fp-skel span { animation: none; }
+        .reveal-ready .fp-rv { opacity: 1; transform: none; transition: none; }
+        .fp-slide { transition: none; }
+        .fp-slide.is-active img { animation: none; }
+        .fp-btn, .fp-ctl, .fp-goal, .fp-card, .fp-link i, .fp-card-go i { transition: none; }
+      }
+
     </style>
   </head>
   
@@ -306,16 +616,148 @@
       </div>
     </header>
     
+      <!-- ================= Hero slideshow: runs behind the header, then pulls in to a rounded card as you scroll ================= -->
+      <section class="fp-hero fp-loading" id="fp-hero" aria-roledescription="carousel" aria-label="Photos and videos from Team 236" tabindex="0">
+        <div class="fp-clip">
+          <div class="fp-stage" id="fp-stage"></div>
+          <div class="fp-shade" aria-hidden="true"></div>
+        </div>
+
+        <div class="fp-copy">
+          <p class="fp-kicker">Lyme/Old Lyme HS &middot; Since <span id="fp-since">1999</span></p>
+          <h1 class="fp-title">
+            <span class="fp-title-small">Team 236</span>
+            <span class="fp-title-big">The TechnoTicks</span>
+          </h1>
+          <p class="fp-sub">A <em>FIRST</em>&reg; Hall of Fame Team</p>
+          <div class="fp-actions">
+            <a class="fp-btn fp-btn-primary" href="https://team236.github.io/about_us">About the team</a>
+            <a class="fp-btn fp-btn-ghost" href="https://team236.github.io/New_members">Join the team</a>
+          </div>
+        </div>
+
+        <div class="fp-ui" id="fp-ui">
+          <div class="fp-cap" aria-live="polite">
+            <span class="fp-count" id="fp-count"></span>
+            <span class="fp-cap-text" id="fp-cap"></span>
+          </div>
+          <div class="fp-controls">
+            <button type="button" class="fp-ctl" id="fp-prev" aria-label="Previous slide"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+            <button type="button" class="fp-ctl" id="fp-play" aria-label="Pause slideshow"><i class="fas fa-pause" aria-hidden="true"></i></button>
+            <button type="button" class="fp-ctl" id="fp-next" aria-label="Next slide"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+
+        <div class="fp-progress" id="fp-progress"></div>
+      </section>
+
     <!-- Main Content -->
-    <main class="container mx-auto px-4 my-10">
-      <div class="robot-slideshow overflow-hidden">
-        <iframe 
-          src="https://docs.google.com/presentation/d/e/2PACX-1vQIhQ-xsC09aNmIXwkdrBqveGMTDITgRorUc5QiwhMZu5RF2nCndZovhQrThaTw0BvwOhqO4plpheY_/embed?start=true&loop=true&delayms=3000&amp;rm=minimal" 
-          class="w-full h-[500px] md:h-[625px]" 
-          allowfullscreen 
-          title="Robot Slideshow (photos of team and robot)">
-        </iframe>
+    <main class="fp-main">
+
+      <!-- ================= Numbers (live from The Blue Alliance) ================= -->
+      <div class="fp-stats-wrap fp-rv" id="fp-stats-wrap">
+        <ul class="fp-stats is-loading" id="fp-stats" aria-label="Team 236 by the numbers">
+          <li class="fp-skel"><b></b><span></span></li>
+          <li class="fp-skel"><b></b><span></span></li>
+          <li class="fp-skel"><b></b><span></span></li>
+          <li class="fp-skel"><b></b><span></span></li>
+        </ul>
+        <p class="fp-tba-note" id="fp-stats-note" hidden>Live numbers from <a href="https://www.thebluealliance.com/team/236" target="_blank" rel="noopener">The Blue Alliance</a></p>
       </div>
+
+      <!-- ================= Who we are ================= -->
+      <section class="fp-sec fp-who fp-rv" aria-labelledby="fp-who-h">
+        <div>
+          <p class="fp-eyebrow">Who we are</p>
+          <h2 class="fp-h2" id="fp-who-h">Students, teachers and mentors, building robots together.</h2>
+        </div>
+        <div class="fp-prose">
+          <p><em>FIRST</em> Team 236 was founded in 1999 by a group of like-minded, forward-thinking students, teachers and mentors with an interest in cutting edge technology. <em>FIRST</em> offered a fun way to learn about robotics, design and computer programming.</p>
+          <p>Our team encompasses students in grades 9-12, teachers and adult mentors. All are welcome.</p>
+          <a class="fp-link" href="https://team236.github.io/about_us">More about the team <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </section>
+
+      <!-- ================= Mission ================= -->
+      <section class="fp-sec fp-rv" aria-labelledby="fp-mission-h">
+        <p class="fp-eyebrow">What we stand for</p>
+        <h2 class="fp-h2" id="fp-mission-h">Our mission</h2>
+        <ul class="fp-goals">
+          <li class="fp-goal fp-goal-1"><i class="fas fa-flask fp-goal-ico" aria-hidden="true"></i><h3>Inspire</h3><p>To inspire and educate students in the fields of STEM.</p></li>
+          <li class="fp-goal fp-goal-2"><i class="fas fa-handshake fp-goal-ico" aria-hidden="true"></i><h3>Gracious Professionalism</h3><p>To foster a culture of Gracious-Professionalism.</p></li>
+          <li class="fp-goal fp-goal-3"><i class="fas fa-trophy fp-goal-ico" aria-hidden="true"></i><h3>Compete</h3><p>To compete at the highest level of <em>FIRST</em> Robotics Competition.</p></li>
+          <li class="fp-goal fp-goal-4"><i class="fas fa-hands-helping fp-goal-ico" aria-hidden="true"></i><h3>Give back</h3><p>To give back to our community through outreach and mentorship.</p></li>
+        </ul>
+      </section>
+
+      <!-- ================= Explore ================= -->
+      <section class="fp-sec fp-rv" aria-labelledby="fp-explore-h">
+        <p class="fp-eyebrow">Explore</p>
+        <h2 class="fp-h2" id="fp-explore-h">Inside Team 236</h2>
+        <div class="fp-cards">
+          <a class="fp-card" href="https://team236.github.io/Robot_archive">
+            <span class="fp-card-ico"><i class="fas fa-robot" aria-hidden="true"></i></span>
+            <h3>Robots</h3>
+            <p>Game info, photos, stats and 3D models for the robots Team 236 has built.</p>
+            <span class="fp-card-go">View robots <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </a>
+          <a class="fp-card" href="https://team236.github.io/about_us">
+            <span class="fp-card-ico"><i class="fas fa-users" aria-hidden="true"></i></span>
+            <h3>About us</h3>
+            <p>Our story, our mission, and what it means to be a Hall of Fame team.</p>
+            <span class="fp-card-go">Meet the team <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </a>
+          <a class="fp-card" href="https://team236.github.io/New_members">
+            <span class="fp-card-ico"><i class="fas fa-user-plus" aria-hidden="true"></i></span>
+            <h3>New members</h3>
+            <p>Everything a new member needs to know, in one slideshow.</p>
+            <span class="fp-card-go">Get started <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </a>
+          <a class="fp-card" href="https://team236.github.io/bash">
+            <span class="fp-card-ico"><i class="fas fa-umbrella-beach" aria-hidden="true"></i></span>
+            <h3>Bash@theBeach</h3>
+            <p>Our off-season <em>FIRST</em> Robotics event, aimed at training new team members.</p>
+            <span class="fp-card-go">See the event <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ================= On the field (live from The Blue Alliance) ================= -->
+      <section class="fp-sec fp-rv" id="fp-field" aria-labelledby="fp-field-h" hidden>
+        <p class="fp-eyebrow">On the field</p>
+        <h2 class="fp-h2" id="fp-field-h">Season results</h2>
+        <p class="fp-season-sum" id="fp-season-sum" hidden></p>
+        <p class="fp-field-note">Live from <a href="https://www.thebluealliance.com/team/236" target="_blank" rel="noopener">The Blue Alliance</a>.</p>
+        <div id="fp-field-body"></div>
+      </section>
+
+      <!-- ================= Latest robot ================= -->
+      <section class="fp-sec fp-robot fp-rv" aria-labelledby="fp-robot-h">
+        <div class="fp-robot-copy">
+          <p class="fp-eyebrow">Latest robot &middot; 2026</p>
+          <h2 class="fp-h2" id="fp-robot-h">T.U.B.</h2>
+          <p>Built for the 2026 <em>FIRST</em>&reg; Robotics Competition game, <em>Rebuilt</em>.</p>
+          <div class="fp-actions">
+            <a class="fp-btn fp-btn-primary" href="https://team236.github.io/Robot_archive#y2026">Meet T.U.B.</a>
+            <a class="fp-btn fp-btn-outline" href="https://team236.github.io/Robot_archive">See every robot</a>
+          </div>
+        </div>
+        <div class="fp-robot-art" aria-hidden="true"><span>2026</span><em>Rebuilt</em></div>
+      </section>
+
+      <!-- ================= Join ================= -->
+      <section class="fp-join fp-rv" aria-labelledby="fp-join-h">
+        <div class="fp-join-ico"><i class="fas fa-award" aria-hidden="true"></i></div>
+        <div class="fp-join-copy">
+          <h2 id="fp-join-h">Ready to join the team?</h2>
+          <p>Students, teachers and adult mentors are all welcome. We'd love to hear from you.</p>
+        </div>
+        <div class="fp-actions">
+          <a class="fp-btn fp-btn-light" href="https://team236.github.io/New_members">New member info</a>
+          <a class="fp-btn fp-btn-ghost" href="https://team236.github.io/Contact_Us">Contact us</a>
+        </div>
+      </section>
+
     </main>
     
     <!-- Footer -->
@@ -447,6 +889,599 @@
           }).observe(nav);
         }
         measure(); update();
+      })();
+    </script>
+      <!-- Front page slideshow -->
+    <script>
+      /* ============================================================
+         FRONT PAGE SLIDESHOW
+         Shows every photo / video in the "front page images" folder.
+         ============================================================ */
+      (function () {
+        'use strict';
+
+        // ---------- settings you might want to change ----------
+        var FOLDER = 'front page images';           // folder in the repo (next to index.html)
+        var REPO = 'Team236/team236.github.io';     // GitHub owner/repo, used to list the folder
+        var IMAGE_MS = 6500;                         // how long each photo stays up
+        var VIDEO_MAX_MS = 30000;                    // longest a clip plays before moving on
+        var CACHE_KEY = 'fp-slides-v1';
+        var CACHE_MS = 5 * 60 * 1000;                // remember the file list for 5 minutes
+        var HEIC_LIB = 'https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js';
+
+        // ---------- The Blue Alliance (live numbers + season results) ----------
+        // This key is read-only and was made just for this website, so it's fine that it's public.
+        // If anyone ever misuses it, make a new one at thebluealliance.com/account and paste it here.
+        var TBA_KEY = 'DPvhrVCOlQ0GsEcqPLKYjJHF7rH0gNOuKnUojAwRuLDJpKgnRXFkQZbw5qsXUMLD';
+        var TBA_TEAM = 'frc236';
+        var TBA_BASE = 'https://www.thebluealliance.com/api/v3';
+        var TBA_CACHE_KEY = 'fp-tba-v1';
+        var TBA_CACHE_MS = 10 * 60 * 1000;           // refresh the numbers at most every 10 minutes
+
+        var IMG_EXT = ['jpg', 'jpeg', 'jfif', 'pjpeg', 'pjp', 'png', 'apng', 'webp', 'avif', 'gif', 'svg', 'bmp', 'tif', 'tiff', 'heic', 'heif'];
+        var VID_EXT = ['mp4', 'm4v', 'mov', 'webm', 'ogv', 'mkv', '3gp', 'avi'];
+        var FALLBACK = [   // only used if the folder can't be read at all
+          { name: 'robot-hero.webp', caption: '2023 Charged Up' },
+          { name: '2017.webp', caption: '2017 Steamworks' },
+          { name: '2016.webp', caption: '2016 Stronghold' }
+        ];
+
+        // ---------- elements ----------
+        var hero = document.getElementById('fp-hero');
+        if (!hero) return;
+        var stage = document.getElementById('fp-stage');
+        var progressEl = document.getElementById('fp-progress');
+        var capEl = document.getElementById('fp-cap');
+        var countEl = document.getElementById('fp-count');
+        var btnPrev = document.getElementById('fp-prev');
+        var btnNext = document.getElementById('fp-next');
+        var btnPlay = document.getElementById('fp-play');
+
+        var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        var slides = [], cur = -1, token = 0;
+        var userPlaying = !reduce, hoverPaused = false, tabHidden = document.hidden;
+        var elapsed = 0, lastTs = 0, raf = 0, usingFallback = false;
+        var base = encodeURIComponent(FOLDER) + '/';
+
+        // ---------- helpers ----------
+        function ext(n) { var m = /\.([a-z0-9]+)$/i.exec(n); return m ? m[1].toLowerCase() : ''; }
+        function kindOf(n) { var e = ext(n); return IMG_EXT.indexOf(e) > -1 ? 'image' : (VID_EXT.indexOf(e) > -1 ? 'video' : ''); }
+        function pad(n) { return n < 10 ? '0' + n : '' + n; }
+        function captionFrom(name) {
+          var s = name.replace(/\.[^.]+$/, '');
+          if (/^(img|dsc|dscn|dscf|pxl|mvimg|vid|mov|photo|image|screenshot|scan|signal)[-_ ]?\d/i.test(s) || /^\d{8}[-_ ]\d+/.test(s)) return '';   // camera names
+          s = s.replace(/^\d{1,2}[-_. ]+/, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();                                                  // "01-" = sort order
+          return s.replace(/(^|\s)([a-z])/g, function (m, a, b) { return a + b.toUpperCase(); });
+        }
+        function getJSON(url, ms) {
+          var ctl = ('AbortController' in window) ? new AbortController() : null;
+          var t = setTimeout(function () { if (ctl) ctl.abort(); }, ms || 6000);
+          return fetch(url, ctl ? { signal: ctl.signal } : {}).then(function (r) {
+            clearTimeout(t); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json();
+          }, function (e) { clearTimeout(t); throw e; });
+        }
+        function toSlides(names, isFallback) {
+          var list = names.filter(function (n) { return typeof n === 'string' && !/^[._~]/.test(n) && kindOf(n); });
+          list.sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }); });
+          return list.map(function (n) {
+            var e = ext(n);
+            return { name: n, ext: e, kind: kindOf(n), heic: e === 'heic' || e === 'heif',
+                     url: isFallback ? n : base + encodeURIComponent(n), caption: captionFrom(n) };
+          });
+        }
+
+        // ---------- find the files ----------
+        function fromApi() {
+          return getJSON('https://api.github.com/repos/' + REPO + '/contents/' + encodeURIComponent(FOLDER)).then(function (list) {
+            if (!Array.isArray(list)) throw new Error('bad listing');
+            return list.filter(function (f) { return f.type === 'file'; }).map(function (f) { return f.name; });
+          });
+        }
+        function fromManifest() {
+          return getJSON(base + 'manifest.json?t=' + Math.floor(Date.now() / 300000)).then(function (m) {
+            var arr = Array.isArray(m) ? m : (m && m.files);
+            if (!Array.isArray(arr)) throw new Error('bad manifest');
+            return arr.map(function (x) { return typeof x === 'string' ? x : (x && x.file); });
+          });
+        }
+        function readCache() { try { return JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) { return null; } }
+        function writeCache(names) { try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), names: names })); } catch (e) { /* private mode */ } }
+
+        function findFiles() {
+          var c = readCache();
+          if (c && c.names && Date.now() - c.t < CACHE_MS) return Promise.resolve(c.names);
+          return fromApi().then(function (n) { writeCache(n); return n; })
+            .catch(function () { return fromManifest(); })                                         // API busy or offline: use the generated list
+            .catch(function () { if (c && c.names) return c.names; throw new Error('no list'); }); // last resort: the old list
+        }
+
+        // ---------- loading media ----------
+        var heicLib = null;
+        function loadScript(src) {
+          return new Promise(function (res, rej) {
+            var s = document.createElement('script'); s.src = src; s.async = true;
+            s.onload = res; s.onerror = function () { rej(new Error('script')); }; document.head.appendChild(s);
+          });
+        }
+        function heicToJpeg(url) {   // Chrome / Firefox / Edge can't show HEIC by themselves
+          heicLib = heicLib || loadScript(HEIC_LIB);
+          return heicLib.then(function () { return fetch(url); })
+            .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
+            .then(function (blob) { return window.heic2any({ blob: blob, toType: 'image/jpeg', quality: 0.85 }); })
+            .then(function (out) { return URL.createObjectURL(Array.isArray(out) ? out[0] : out); });
+        }
+        function tryImg(src) {
+          return new Promise(function (res, rej) {
+            var im = new Image(); im.decoding = 'async';
+            im.onload = function () { res(im); }; im.onerror = function () { rej(new Error('img')); }; im.src = src;
+          });
+        }
+        function setLook(s, w, h, bgSrc) {
+          s.ratio = (w && h) ? w / h : 0;
+          if (bgSrc) s.bg.style.backgroundImage = 'url("' + bgSrc + '")';
+          s.el.classList.add('is-ready');
+          applyFit(s);
+        }
+        function loadImage(s) {
+          var p = tryImg(s.url);
+          if (s.heic) p = p.catch(function () { return heicToJpeg(s.url).then(tryImg); });
+          return p.then(function (im) {
+            var el = document.createElement('img');
+            el.src = im.src; el.alt = s.caption || 'A photo from Team 236'; el.draggable = false;
+            s.el.appendChild(el); s.media = el;
+            setLook(s, im.naturalWidth, im.naturalHeight, im.src);
+          });
+        }
+        function typesFor(e) {
+          if (e === 'mp4' || e === 'm4v') return ['video/mp4'];
+          if (e === 'mov') return ['video/mp4', 'video/quicktime'];   // most .mov clips are plain H.264 inside
+          if (e === 'webm') return ['video/webm'];
+          if (e === 'ogv') return ['video/ogg'];
+          if (e === '3gp') return ['video/3gpp'];
+          return [''];
+        }
+        function loadVideo(s) {
+          return new Promise(function (res, rej) {
+            var v = document.createElement('video'), done = false;
+            v.muted = true; v.defaultMuted = true; v.loop = false; v.playsInline = true; v.preload = 'auto';
+            v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true'); v.tabIndex = -1;
+            var timer = setTimeout(bad, 15000);
+            function ok() { if (done) return; done = true; clearTimeout(timer); s.el.appendChild(v); s.media = v; s.video = v; setLook(s, v.videoWidth, v.videoHeight, ''); res(); }
+            function bad() { if (done) return; done = true; clearTimeout(timer); rej(new Error('video')); }
+            v.addEventListener('loadeddata', ok);
+            v.addEventListener('error', bad);
+            var types = typesFor(s.ext);
+            types.forEach(function (t, i) {
+              var so = document.createElement('source'); so.src = s.url; if (t) so.type = t;
+              if (i === types.length - 1) so.addEventListener('error', bad);
+              v.appendChild(so);
+            });
+            v.load();
+          });
+        }
+        function ensure(s) {
+          if (!s.promise) {
+            s.promise = (s.kind === 'video' ? loadVideo(s) : loadImage(s)).then(function () { s.ready = true; return s; },
+                                                                                 function (e) { s.failed = true; throw e; });
+          }
+          return s.promise;
+        }
+
+        // photos that wouldn't fill the hero nicely sit "contained" over a blurred copy of themselves
+        function applyFit(s) {
+          if (!s.ready && !s.ratio) return;
+          var w = hero.clientWidth, h = hero.clientHeight || 1, hr = w / h, sr = s.ratio || hr;
+          var visible = Math.min(hr / sr, sr / hr);                       // share of the photo that "cover" would keep
+          var contain = visible < 0.7;
+          s.el.setAttribute('data-fit', contain ? 'contain' : 'cover');
+          s.el.style.setProperty('--fp-pos', hr > 1.2 ? '96% 50%' : '50% 20%');
+          if (contain && !s.bg.style.backgroundImage && s.media && s.media.tagName === 'IMG') s.bg.style.backgroundImage = 'url("' + s.media.src + '")';
+        }
+        var rz = 0;
+        window.addEventListener('resize', function () {
+          clearTimeout(rz); rz = setTimeout(function () { slides.forEach(applyFit); }, 150);
+        });
+
+        // ---------- building the show ----------
+        function buildSlides(list) {
+          slides = list;
+          stage.innerHTML = '';
+          slides.forEach(function (s) {
+            var el = document.createElement('figure');
+            el.className = 'fp-slide'; el.setAttribute('role', 'group'); el.setAttribute('aria-roledescription', 'slide');
+            var bg = document.createElement('div'); bg.className = 'fp-bg'; bg.setAttribute('aria-hidden', 'true'); el.appendChild(bg);
+            s.el = el; s.bg = bg; stage.appendChild(el);
+          });
+          buildProgress();
+        }
+        function buildProgress() {
+          progressEl.innerHTML = '';
+          slides.forEach(function (s, i) {
+            s.el.setAttribute('aria-label', (i + 1) + ' of ' + slides.length + (s.caption ? ': ' + s.caption : ''));
+            var b = document.createElement('button'); b.type = 'button'; b.className = 'fp-seg';
+            b.setAttribute('aria-label', 'Go to slide ' + (i + 1) + (s.caption ? ': ' + s.caption : ''));
+            var f = document.createElement('span'); f.className = 'fp-seg-fill'; b.appendChild(f);
+            b.addEventListener('click', function () { show(slides.indexOf(s)); });
+            s.seg = b; s.fill = f; progressEl.appendChild(b);
+          });
+          hero.classList.toggle('fp-single', slides.length < 2);
+        }
+        function paintCount() {
+          countEl.textContent = (slides.length > 1 && cur >= 0) ? pad(cur + 1) + ' / ' + pad(slides.length) : '';
+        }
+        function paintProgress(p) {
+          var s = slides[cur]; if (!s) return;
+          s.fill.style.width = Math.max(0, Math.min(1, p)) * 100 + '%';
+        }
+        function paintSegments() {
+          slides.forEach(function (s, i) {
+            s.seg.classList.toggle('is-done', i < cur);
+            s.seg.classList.toggle('is-now', i === cur);
+            if (i !== cur) s.fill.style.width = '';
+          });
+        }
+
+        function activate(s) {
+          s.el.classList.add('is-active'); s.el.removeAttribute('aria-hidden');
+          if (s.video) { try { s.video.currentTime = 0; } catch (e) { /* not seekable yet */ } if (running()) s.video.play().catch(function () {}); }
+        }
+        function deactivate(s) {
+          s.el.classList.remove('is-active'); s.el.setAttribute('aria-hidden', 'true');
+          if (s.video) setTimeout(function () { if (!s.el.classList.contains('is-active')) s.video.pause(); }, 1000);
+        }
+        function running() { return userPlaying && !hoverPaused && !tabHidden; }
+
+        function show(i) {
+          if (!slides.length) return;
+          i = (i + slides.length) % slides.length;
+          var my = ++token, s = slides[i];
+          ensure(s).then(function () {
+            if (my !== token) return;
+            hero.classList.remove('fp-loading');
+            var prev = slides[cur];
+            if (prev && prev !== s) deactivate(prev);
+            cur = i; activate(s);
+            elapsed = 0; lastTs = 0;
+            paintSegments(); paintProgress(0);
+            paintCount();
+            capEl.textContent = s.caption;
+            ensure(slides[(i + 1) % slides.length]).catch(function () {});        // warm up the next one
+            sync();
+          }).catch(function () {
+            if (my !== token) return;
+            if (!drop(s)) show(Math.min(i, slides.length - 1));
+          });
+        }
+        function drop(s) {   // a file the browser couldn't open: leave it out of the show
+          var idx = slides.indexOf(s);
+          if (idx < 0) return false;
+          slides.splice(idx, 1);
+          if (s.el.parentNode) s.el.parentNode.removeChild(s.el);
+          if (cur > idx) cur--;
+          if (!slides.length) {
+            if (!usingFallback) { usingFallback = true; start(toSlides(FALLBACK.map(function (f) { return f.name; }), true), true); }
+            else { hero.classList.remove('fp-loading'); hero.classList.add('fp-single'); }
+            return true;
+          }
+          buildProgress(); paintSegments(); paintCount();
+          return false;
+        }
+        function next() { show(cur + 1); }
+        function prev() { show(cur - 1); }
+
+        // ---------- the clock (images use a timer, clips use their own length) ----------
+        function tick(ts) {
+          raf = 0;
+          if (!running() || cur < 0) { lastTs = 0; return; }
+          var s = slides[cur], p;
+          if (s.video && s.video.duration > 0 && isFinite(s.video.duration)) {
+            var len = Math.min(s.video.duration, VIDEO_MAX_MS / 1000);
+            p = s.video.currentTime / len;
+            if (s.video.ended || p >= 1) { next(); return; }
+          } else {
+            if (!lastTs) lastTs = ts;
+            elapsed += ts - lastTs; lastTs = ts;
+            p = elapsed / (s.video ? VIDEO_MAX_MS : IMAGE_MS);
+            if (p >= 1) { next(); return; }
+          }
+          paintProgress(p);
+          raf = requestAnimationFrame(tick);
+        }
+        function sync() {   // start / stop everything to match the play state
+          var s = slides[cur];
+          if (s && s.video) { if (running()) s.video.play().catch(function () {}); else s.video.pause(); }
+          if (raf) { cancelAnimationFrame(raf); raf = 0; }
+          lastTs = 0;
+          if (running() && cur >= 0) raf = requestAnimationFrame(tick);
+          hero.classList.toggle('is-paused', !running());
+        }
+        function setPlaying(on) {
+          userPlaying = on;
+          btnPlay.innerHTML = on ? '<i class="fas fa-pause" aria-hidden="true"></i>' : '<i class="fas fa-play" aria-hidden="true"></i>';
+          btnPlay.setAttribute('aria-label', on ? 'Pause slideshow' : 'Play slideshow');
+          sync();
+        }
+
+        // ---------- controls ----------
+        btnNext.addEventListener('click', next);
+        btnPrev.addEventListener('click', prev);
+        btnPlay.addEventListener('click', function () { setPlaying(!userPlaying); });
+        hero.addEventListener('keydown', function (e) {
+          if (e.target !== hero) return;
+          if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+          else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+          else if (e.key === ' ') { e.preventDefault(); setPlaying(!userPlaying); }
+        });
+        hero.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hoverPaused = true; sync(); } });
+        hero.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hoverPaused = false; sync(); } });
+        hero.addEventListener('focusin', function () { hoverPaused = true; sync(); });
+        hero.addEventListener('focusout', function (e) { if (!hero.contains(e.relatedTarget)) { hoverPaused = false; sync(); } });
+        document.addEventListener('visibilitychange', function () { tabHidden = document.hidden; sync(); });
+
+        var sx = 0, sy = 0, sid = null;      // swipe
+        hero.addEventListener('pointerdown', function (e) {
+          if (e.target.closest('a, button')) return;
+          sid = e.pointerId; sx = e.clientX; sy = e.clientY;
+        });
+        hero.addEventListener('pointerup', function (e) {
+          if (sid !== e.pointerId) return; sid = null;
+          var dx = e.clientX - sx, dy = e.clientY - sy;
+          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) { if (dx < 0) next(); else prev(); }
+        });
+        hero.addEventListener('pointercancel', function () { sid = null; });
+
+        // ---------- the slideshow starts as the page background and pulls in to a rounded card as you scroll ----------
+        var header = document.querySelector('header');
+        var wide = window.matchMedia ? window.matchMedia('(min-width: 701px)') : { matches: true };
+        var root = document.documentElement, hdrH = 0, morphQueued = false;
+        function setVar(k, v) { root.style.setProperty(k, v); }
+        function morph() {
+          morphQueued = false;
+          var rem = parseFloat(getComputedStyle(root).fontSize) || 16;
+          var over = wide.matches ? hdrH : 0;                    // phones: the header is too tall to sit over the photos
+          var y = window.pageYOffset || root.scrollTop || 0;
+          var p = Math.max(0, Math.min(1, y / Math.max(160, hdrH)));   // 0 = full-bleed background, 1 = finished card
+          var gutter = Math.max(rem, (root.clientWidth - 72 * rem) / 2 + rem);
+          setVar('--hdr-h', over + 'px');
+          setVar('--fp-p', p.toFixed(4));
+          setVar('--fp-hbg', wide.matches ? p.toFixed(4) : '1');
+          setVar('--ct', (p * (over + 1.5 * rem)).toFixed(1) + 'px');
+          setVar('--cx', (p * gutter).toFixed(1) + 'px');
+          setVar('--cr', (p * 1.5 * rem).toFixed(1) + 'px');
+        }
+        function queueMorph() { if (!morphQueued) { morphQueued = true; requestAnimationFrame(morph); } }
+        function measureHeader() { hdrH = header ? Math.round(header.getBoundingClientRect().height) : 0; slides.forEach(applyFit); morph(); }
+        measureHeader();
+        window.addEventListener('scroll', queueMorph, { passive: true });
+        window.addEventListener('resize', measureHeader);
+        window.addEventListener('load', measureHeader);
+        if (header && 'ResizeObserver' in window) new ResizeObserver(measureHeader).observe(header);   // Tailwind / fonts / the nav wrapping can change its height
+
+        // ---------- go ----------
+        function start(list, isFallback) {
+          if (!list.length) {
+            if (isFallback) { hero.classList.remove('fp-loading'); hero.classList.add('fp-single'); return; }
+            usingFallback = true; start(toSlides(FALLBACK.map(function (f) { return f.name; }), true), true); return;
+          }
+          if (isFallback) list.forEach(function (s) {
+            var f = FALLBACK.filter(function (x) { return x.name === s.name; })[0];
+            s.caption = f ? f.caption : '';
+          });
+          buildSlides(list); cur = -1;
+          setPlaying(userPlaying);
+          show(0);
+        }
+        findFiles().then(function (names) { start(toSlides(names, false), false); },
+                         function () { usingFallback = true; start(toSlides(FALLBACK.map(function (f) { return f.name; }), true), true); });
+
+        // ---------- scroll reveal, and "do this when it first scrolls into view" ----------
+        var rv = document.querySelectorAll('.fp-rv');
+        var canReveal = 'IntersectionObserver' in window && !reduce;
+        function whenSeen(el, fn) {
+          if (!canReveal || el.classList.contains('in')) fn(); else el._onSeen = fn;
+        }
+        if (canReveal) {
+          document.documentElement.classList.add('reveal-ready');
+          var io = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              e.target.classList.add('in'); io.unobserve(e.target);
+              if (e.target._onSeen) { var f = e.target._onSeen; e.target._onSeen = null; f(); }
+            });
+          }, { rootMargin: '0px 0px -8% 0px' });
+          Array.prototype.forEach.call(rv, function (el) { io.observe(el); });
+        }
+        function countTo(el, to) {
+          if (reduce) { el.textContent = to; return; }
+          var t0 = null;
+          (function step(ts) {
+            if (t0 === null) t0 = ts;
+            var k = Math.min(1, (ts - t0) / 1100);
+            el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+            if (k < 1) requestAnimationFrame(step);
+          })(performance.now());
+        }
+
+        // ============================================================
+        // THE BLUE ALLIANCE: team numbers and this season's results
+        // ============================================================
+        function readJSON(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
+        function writeJSON(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* private mode */ } }
+        function $(id) { return document.getElementById(id); }
+
+        function tba(path) {
+          var ctl = ('AbortController' in window) ? new AbortController() : null;
+          var t = setTimeout(function () { if (ctl) ctl.abort(); }, 9000);
+          var opts = { headers: { 'X-TBA-Auth-Key': TBA_KEY, 'Accept': 'application/json' } };
+          if (ctl) opts.signal = ctl.signal;
+          return fetch(TBA_BASE + path, opts).then(function (r) {
+            clearTimeout(t); if (!r.ok) throw new Error('TBA ' + r.status); return r.json();
+          }, function (e) { clearTimeout(t); throw e; });
+        }
+        function soft(p) { return p.catch(function () { return null; }); }   // one failed call shouldn't sink the rest
+
+        var OFFICIAL = { 0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1 };          // regionals, districts, championships (not offseason)
+        var EVENT_TYPE = { 0: 'Regional', 1: 'District', 2: 'District Championship', 3: 'Championship Division', 4: 'Championship Finals',
+                           5: 'District Championship Division', 6: 'Festival of Champions', 99: 'Offseason', 100: 'Preseason' };
+        function isOfficial(e) { return !!OFFICIAL[e.event_type]; }
+        function todayStr() { var d = new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+        function plain(html) {       // TBA's status text contains HTML tags: keep only the words, never the markup
+          try {
+            var doc = new DOMParser().parseFromString(String(html), 'text/html');
+            Array.prototype.forEach.call(doc.querySelectorAll('script, style'), function (n) { n.parentNode.removeChild(n); });
+            return (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
+          } catch (e) { return ''; }
+        }
+        function utcDate(s) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || ''); return m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])) : null; }
+        var fmtMD = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+        function dateRange(a, b) {
+          var d1 = utcDate(a), d2 = utcDate(b);
+          if (!d1) return '';
+          if (!d2 || +d1 === +d2) return fmtMD.format(d1);
+          return d1.getUTCMonth() === d2.getUTCMonth() ? fmtMD.format(d1) + ' \u2013 ' + d2.getUTCDate() : fmtMD.format(d1) + ' \u2013 ' + fmtMD.format(d2);
+        }
+        function plural(n, one, many) { return n + ' ' + (n === 1 ? one : (many || one + 's')); }
+
+        function latestStartedYear(events) {
+          var today = todayStr(), y = 0;
+          events.forEach(function (e) { if (e.start_date && e.start_date <= today && e.year > y) y = e.year; });
+          return y || 0;
+        }
+        function loadTba() {
+          var c = readJSON(TBA_CACHE_KEY);
+          if (c && c.data && Date.now() - c.t < TBA_CACHE_MS) return Promise.resolve(c.data);
+          var team = '/team/' + TBA_TEAM;
+          return Promise.all([soft(tba(team)), soft(tba(team + '/years_participated')), soft(tba(team + '/events/simple')), soft(tba(team + '/awards'))])
+            .then(function (r) {
+              var d = { team: r[0], years: r[1], events: r[2], awards: r[3] };
+              if (!d.team && !d.years && !d.events && !d.awards) throw new Error('no TBA data');
+              var y = Array.isArray(d.events) ? latestStartedYear(d.events) : 0;
+              if (!y) return d;
+              return soft(tba(team + '/events/' + y + '/statuses')).then(function (st) { d.statuses = st || {}; d.statusYear = y; return d; });
+            })
+            .then(function (d) { writeJSON(TBA_CACHE_KEY, { t: Date.now(), data: d }); return d; })
+            .catch(function (e) { if (c && c.data) return c.data; throw e; });   // TBA down: show the last numbers we saw
+        }
+
+        // ---------- the numbers ----------
+        function renderStats(d) {
+          var wrap = $('fp-stats-wrap'), ul = $('fp-stats');
+          var events = Array.isArray(d.events) ? d.events : null;
+          var official = events ? events.filter(isOfficial) : [];
+          var keys = {}; official.forEach(function (e) { keys[e.key] = 1; });
+          var awards = Array.isArray(d.awards) ? d.awards : [];
+          var wins = events ? awards.filter(function (a) { return a.award_type === 1 && keys[a.event_key]; }).length : 0;   // needs the event list to tell official wins from offseason ones
+          var years = Array.isArray(d.years) ? d.years : [];
+          var since = (d.team && d.team.rookie_year) || (years.length ? Math.min.apply(null, years) : 0);
+          if (since) $('fp-since').textContent = since;
+
+          var items = [
+            { label: 'Competing since', value: since, plain: true },
+            { label: 'Seasons', value: years.length },
+            { label: 'Events', value: official.length },
+            { label: 'Event wins', value: wins },
+            { label: 'Awards', value: awards.length }
+          ].filter(function (x) { return x.value > 0; });
+          if (!items.length) { wrap.parentNode.removeChild(wrap); return; }
+
+          ul.classList.remove('is-loading'); ul.innerHTML = '';
+          var nums = [];
+          items.forEach(function (x) {
+            var li = document.createElement('li'), b = document.createElement('b'), s = document.createElement('span');
+            b.textContent = x.plain ? x.value : '0'; s.textContent = x.label;
+            li.appendChild(b); li.appendChild(s); ul.appendChild(li);
+            if (!x.plain) nums.push([b, x.value]);
+          });
+          $('fp-stats-note').hidden = false;
+          whenSeen(wrap, function () { nums.forEach(function (n) { countTo(n[0], n[1]); }); });
+        }
+
+        // ---------- season results ----------
+        function statusText(st) {
+          if (!st) return '';
+          var s = plain(st.overall_status_str || '');
+          if (s) return s;
+          var q = st.qual && st.qual.ranking;
+          if (q && q.rank) {
+            var r = q.record ? ' (' + q.record.wins + '-' + q.record.losses + '-' + q.record.ties + ')' : '';
+            return 'Ranked ' + q.rank + (st.qual.num_teams ? ' of ' + st.qual.num_teams : '') + ' in qualifications' + r + '.';
+          }
+          return '';
+        }
+        function mk(tag, cls, text) {
+          var el = document.createElement(tag);
+          if (cls) el.className = cls;
+          if (text !== undefined) el.textContent = text;
+          return el;
+        }
+        function eventCard(e, st, awards, today) {
+          var card = mk('article', 'fp-event');
+          var top = mk('div', 'fp-event-top');
+          var range = dateRange(e.start_date, e.end_date); if (range) top.appendChild(mk('span', 'fp-chip', range));
+          if (EVENT_TYPE[e.event_type]) top.appendChild(mk('span', 'fp-chip', EVENT_TYPE[e.event_type]));
+          if (e.start_date > today) top.appendChild(mk('span', 'fp-chip fp-chip-hot', 'Upcoming'));
+          else if (e.end_date && e.end_date >= today) top.appendChild(mk('span', 'fp-chip fp-chip-hot', 'Happening now'));
+          card.appendChild(top);
+          card.appendChild(mk('h3', '', e.name || e.key));
+          var loc = [e.city, e.state_prov].filter(Boolean).join(', '); if (loc) card.appendChild(mk('p', 'fp-event-loc', loc));
+          var res = statusText(st); if (res) card.appendChild(mk('p', 'fp-event-result', res));
+
+          var seen = {}, mine = awards.filter(function (a) {
+            if (a.event_key !== e.key || !a.name || seen[a.name]) return false; seen[a.name] = 1; return true;
+          }).sort(function (a, b) { return (a.award_type <= 1 ? 0 : 1) - (b.award_type <= 1 ? 0 : 1); });
+          if (mine.length) {
+            var ul = mk('ul', 'fp-badges');
+            mine.forEach(function (a) { ul.appendChild(mk('li', a.award_type <= 1 ? 'gold' : '', a.name)); });
+            card.appendChild(ul);
+          }
+          var link = mk('a', 'fp-event-link', 'View on The Blue Alliance \u2192');
+          link.href = 'https://www.thebluealliance.com/event/' + encodeURIComponent(e.key); link.target = '_blank'; link.rel = 'noopener';
+          card.appendChild(link);
+          return card;
+        }
+        function renderField(d) {
+          var events = Array.isArray(d.events) ? d.events.slice() : [];
+          if (!events.length) return;
+          events.sort(function (a, b) { return (a.start_date || '').localeCompare(b.start_date || ''); });
+          var today = todayStr(), awards = Array.isArray(d.awards) ? d.awards : [];
+          var latest = latestStartedYear(events);
+          var later = events.filter(function (e) { return e.start_date > today && e.year > latest; });
+          var nextYear = later.length ? later[0].year : 0;
+
+          var groups = [];
+          if (latest) groups.push({ year: latest, list: events.filter(function (e) { return e.year === latest; }), st: d.statusYear === latest ? (d.statuses || {}) : {} });
+          if (nextYear) groups.push({ year: nextYear, list: later.filter(function (e) { return e.year === nextYear; }), st: {}, up: true });
+          if (!groups.length) return;
+
+          var body = $('fp-field-body'); body.innerHTML = '';
+          groups.forEach(function (g, i) {
+            if (i > 0) body.appendChild(mk('h3', 'fp-group-h', 'Up next \u00b7 ' + g.year));
+            var grid = mk('div', 'fp-events');
+            g.list.forEach(function (e) { grid.appendChild(eventCard(e, g.st[e.key], awards, today)); });
+            body.appendChild(grid);
+          });
+          $('fp-field-h').textContent = groups[0].year + ' season';
+
+          if (latest) {          // one-line summary of the season so far
+            var yr = groups[0].list.filter(isOfficial);
+            var keys = {}; yr.forEach(function (e) { keys[e.key] = 1; });
+            var yAwards = awards.filter(function (a) { return a.year === latest; });
+            var yWins = yAwards.filter(function (a) { return a.award_type === 1 && keys[a.event_key]; }).length;
+            var bits = [];
+            if (yr.length) bits.push(plural(yr.length, 'event'));
+            if (yWins) bits.push(plural(yWins, 'event win'));
+            if (yAwards.length) bits.push(plural(yAwards.length, 'award'));
+            if (bits.length) { var sum = $('fp-season-sum'); sum.textContent = bits.join(' \u00b7 '); sum.hidden = false; }
+          }
+          $('fp-field').hidden = false;
+        }
+
+        loadTba().then(function (d) {
+          renderStats(d);
+          renderField(d);
+        }, function () {          // The Blue Alliance couldn't be reached and we have nothing saved: leave the numbers out
+          var w = $('fp-stats-wrap'); if (w && w.parentNode) w.parentNode.removeChild(w);
+        });
       })();
     </script>
   </body>
