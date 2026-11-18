@@ -1,82 +1,566 @@
 <!DOCTYPE html> <!-- Declares we're using HTML 5 [we're not strictly because we're using the "center," which is HTML 4]-->
 <html lang='en'>
   <head>
-    <title>236 Technoticks</title>  <!--title and logo in the tab space-->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page not found | 236 Technoticks</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+      
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f0f4f8;
+       
+      }
+      
+      .gradient-bg {
+        background: linear-gradient(135deg, #8ca7fa 0%, #5a7df5 100%);
+      }
+      
+      .nav-btn {
+        transition: all 0.3s ease;
+      }
+      
+      .nav-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .footer-icon {
+        transition: all 0.3s ease;
+      }
+      
+      .footer-icon:hover {
+        transform: scale(1.1);
+      }
+      
+      .robot-slideshow {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-radius: 0.5rem;
+        padding: 40px;
+      margin-left: 100px;
+      margin-right: 100px;
+      }
+      
+      .header-banner {
+        max-height: 180px;
+        object-fit: contain;
+        border-radius: 24px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .header-banner:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+      
+      .disney-border {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .disney-border::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-radius: 24px;
+        pointer-events: none;
+      }
+      
+      
+      
+      
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+          /* ---------------- Theme base (shared with index.html) ---------------- */
+      body {
+        margin: 0;
+        min-height: 100vh;
+        transition: background 0.8s ease, color 0.6s ease;
+      }
+
+      /* ---------------- EASY READ THEME ---------------- */
+      body.theme-easyRead {
+        background: linear-gradient(180deg, #8ca7fa 0%, #e6eef9 50%, #f0f4f8 100%);
+        color: #222;
+      }
+      body.theme-easyRead header.gradient-bg {
+        background: linear-gradient(135deg, #8ca7fa 0%, #5a7df5 100%);
+        color: #fff;
+        backdrop-filter: none;
+      }
+      body.theme-easyRead nav,
+      body.theme-easyRead footer,
+      body.theme-easyRead .robot-slideshow {
+        background: #fff;
+        color: #111;
+        backdrop-filter: none;
+        border-radius: 0.5rem;
+      }
+
+      /* ---------------- COOL LOOK THEME ---------------- */
+      body.theme-coolLook {
+        background: #0a0a1a;
+        background-image:
+          radial-gradient(circle at 20% 30%, rgba(128, 0, 255, 0.38), transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(0, 0, 255, 0.32), transparent 50%),
+          radial-gradient(circle at 70% 80%, rgba(255, 0, 255, 0.22), transparent 50%),
+          radial-gradient(circle at 30% 70%, rgba(0, 0, 128, 0.28), transparent 50%);
+        background-blend-mode: screen;
+        background-attachment: fixed;
+        color: #fff;
+        animation: fadeInBg 2s ease forwards, moveBlobs 60s ease-in-out infinite alternate;
+      }
+      body.theme-coolLook header.gradient-bg {
+        background: rgba(20, 20, 60, 0.85);
+        backdrop-filter: blur(6px);
+        color: #fff;
+      }
+      body.theme-coolLook nav {
+        background: rgba(10, 10, 20, 0.55);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-top: 2rem;
+        backdrop-filter: blur(6px);
+      }
+      body.theme-coolLook .robot-slideshow {
+        background: rgba(15, 15, 30, 0.75);
+        backdrop-filter: blur(4px);
+        padding: 1rem;
+        border-radius: 0.75rem;
+      }
+      body.theme-coolLook footer {
+        background: rgba(20, 20, 40, 0.85);
+        backdrop-filter: blur(8px);
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #8ca7fa 0%, #5a7df5 100%);
+      }
+
+      @keyframes fadeInBg {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+      @keyframes moveBlobs {
+        0% { background-position: 20% 30%, 80% 20%, 70% 80%, 30% 70%; }
+        50% { background-position: 22% 32%, 78% 22%, 68% 78%, 32% 68%; }
+        100% { background-position: 20% 30%, 80% 20%, 70% 80%, 30% 70%; }
+      }
+
+      /* ---------------- Toggle button ---------------- */
+      .theme-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem 0.9rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: rgba(0,0,0,0.6);
+        color: #fff;
+        z-index: 999;
+        font-weight: 700;
+        backdrop-filter: blur(4px);
+      }
+      @media (max-width: 480px) {
+        .theme-toggle { top: 0.6rem; right: 0.6rem; padding: 0.45rem 0.7rem; font-size: 0.9rem; }
+      }
+    
+      /* ======================================================
+         404 PAGE  (same look as the rest of the site)
+         ====================================================== */
+      body {
+        --ra-card: rgba(15, 15, 32, 0.74);
+        --ra-card-border: rgba(255, 255, 255, 0.12);
+        --ra-text: #ffffff;
+        --ra-muted: rgba(255, 255, 255, 0.8);
+        --ra-chip: rgba(255, 255, 255, 0.08);
+        --ra-chip-border: rgba(255, 255, 255, 0.2);
+        --ra-accent: #8ca7fa;
+        --ra-accent2: #c084fc;
+        --ra-shadow: 0 24px 44px -22px rgba(0, 0, 0, 0.7);
+      }
+      body.theme-easyRead {
+        --ra-card: #ffffff;
+        --ra-card-border: rgba(30, 64, 175, 0.16);
+        --ra-text: #111111;
+        --ra-muted: #3f4a5c;
+        --ra-chip: rgba(59, 91, 219, 0.08);
+        --ra-chip-border: rgba(59, 91, 219, 0.35);
+        --ra-accent: #3b5bdb;
+        --ra-accent2: #7c3aed;
+        --ra-shadow: 0 14px 30px -16px rgba(30, 64, 175, 0.4);
+      }
+
+      .nf-main { width: 100%; max-width: 64rem; margin: 0 auto; padding: 0 1rem 4rem; box-sizing: border-box; color: var(--ra-text); }
+
+      /* ---- hero ---- */
+      .nf-hero {
+        position: relative; overflow: hidden; isolation: isolate; margin-top: 2rem;
+        min-height: clamp(13rem, 19vw, 15.5rem); display: flex; align-items: flex-end;
+        border-radius: 1.5rem; border: 1px solid var(--ra-card-border); background: #0a0a1a; box-shadow: var(--ra-shadow);
+      }
+      .nf-hero::before {                     /* big "404" behind the title */
+        content: '404'; position: absolute; right: clamp(.5rem, 4vw, 3rem); top: 50%; transform: translateY(-50%);
+        z-index: -1; font-size: clamp(8rem, 22vw, 14rem); font-weight: 700; line-height: 1; letter-spacing: -0.04em;
+        background: linear-gradient(135deg, #8ca7fa, #c084fc);
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; opacity: .5;
+      }
+      .nf-hero::after {
+        content: ''; position: absolute; inset: 0; z-index: -2;
+        background: radial-gradient(circle at 8% 15%, rgba(128, 0, 255, 0.38), transparent 55%), radial-gradient(circle at 92% 90%, rgba(90, 125, 245, 0.35), transparent 50%);
+      }
+      .nf-hero-inner { position: relative; padding: clamp(1.25rem, 3vw, 2rem); color: #fff; }
+      .nf-eyebrow { margin: 0 0 .35rem; font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #8ca7fa; }
+      .nf-hero h1 { margin: 0; font-size: clamp(2.2rem, 6.5vw, 3.75rem); line-height: 1; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+      .nf-sub { margin: .6rem 0 0; max-width: 34rem; font-size: 1.05rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85); }
+      @media (max-width: 600px) { .nf-hero::before { opacity: .22; } }
+
+      /* ---- the game + the search ---- */
+      .nf-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+      @media (min-width: 900px) { .nf-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+      .nf-card {
+        border-radius: 1.25rem; overflow: hidden; background: var(--ra-card); border: 1px solid var(--ra-card-border); box-shadow: var(--ra-shadow);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      }
+      .nf-game { margin: 0; display: flex; flex-direction: column; }
+      .nf-game img { display: block; width: 100%; height: auto; background: #9ec5ff; }
+      .nf-game figcaption { padding: 1rem 1.25rem 1.15rem; text-align: center; }
+      .nf-game h2 {
+        margin: 0; font-size: clamp(1.35rem, 3.6vw, 1.85rem); font-weight: 700; line-height: 1.2;
+        background: linear-gradient(135deg, var(--ra-accent), var(--ra-accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+      }
+      .nf-search { display: flex; flex-direction: column; gap: 1rem; padding: clamp(1.25rem, 3vw, 2rem); }
+      .nf-search h2 { margin: 0; font-size: 1.6rem; font-weight: 700; line-height: 1.2; color: var(--ra-text); }
+      .nf-search p { margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--ra-muted); }
+      .nf-cse { min-height: 3.2rem; padding: .35rem .5rem; border-radius: .9rem; color: #111; background: #fff; border: 1px solid var(--ra-chip-border); }
+      .nf-cse .gsc-control-cse, .nf-cse .gsc-control-cse .gsc-table-result { padding: 0 !important; background: transparent !important; border: 0 !important; }
+      .nf-links { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: auto; padding-top: .5rem; }
+      .nf-btn {
+        display: inline-flex; align-items: center; gap: .5rem; padding: .7rem 1.1rem; border-radius: .7rem; font-size: .98rem; font-weight: 500; line-height: 1.2;
+        text-decoration: none; color: #fff; background: #1e40af; transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+      }
+      .nf-btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 10px 22px -10px rgba(29, 78, 216, 0.9); }
+      .nf-btn-ghost { color: var(--ra-text); background: var(--ra-chip); border: 1px solid var(--ra-chip-border); }
+      .nf-btn-ghost:hover { background: var(--ra-chip); border-color: var(--ra-accent); box-shadow: none; }
+      @media (prefers-reduced-motion: reduce) { .nf-btn { transition: none; } }
+
+      /* ======================================================
+         NAV: sits inside the banner, then pops out into a floating bar on scroll
+         (the banner itself never floats)
+         ====================================================== */
+      /* a backdrop-filter on the header would trap the floating nav inside it */
+      header.gradient-bg { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+      .site-nav-slot { margin-top: 1.25rem; }
+
+      /* in the banner: no panel of its own */
+      body.theme-coolLook nav.site-nav,
+      body.theme-easyRead nav.site-nav {
+        background: transparent; padding: 0; margin: 0; border-radius: 0; border: 0; box-shadow: none; color: inherit;
+        backdrop-filter: none; -webkit-backdrop-filter: none;
+      }
+
+      /* the page you're on */
+      .nav-btn.nav-current {
+        background-image: linear-gradient(135deg, #5a7df5, #8b5cf6);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+      }
+
+      /* floating bar (JS adds .is-stuck once the nav scrolls past the top) */
+      body.theme-coolLook nav.site-nav.is-stuck,
+      body.theme-easyRead nav.site-nav.is-stuck {
+        position: fixed; top: .6rem; left: 50%; z-index: 900; box-sizing: border-box;
+        width: calc(100% - 1.5rem); padding: .45rem 4rem; border-radius: 1rem;
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        transform: translateX(-50%);
+        animation: navPop .35s cubic-bezier(.2, .8, .2, 1) both;
+      }
+      body.theme-coolLook nav.site-nav.is-stuck {
+        background: rgba(10, 10, 26, 0.84); border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.75);
+      }
+      body.theme-easyRead nav.site-nav.is-stuck {
+        background: rgba(255, 255, 255, 0.94); border: 1px solid rgba(30, 64, 175, 0.18);
+        box-shadow: 0 12px 26px -14px rgba(30, 64, 175, 0.45);
+      }
+      nav.site-nav.is-stuck .nav-row {
+        flex-wrap: nowrap; gap: .4rem; overflow-x: auto; scrollbar-width: none;
+        justify-content: flex-start; justify-content: safe center;
+      }
+      nav.site-nav.is-stuck .nav-row::-webkit-scrollbar { display: none; }
+      nav.site-nav.is-stuck .nav-btn {
+        flex: 0 0 auto; padding: .45rem .85rem; font-size: .88rem; white-space: nowrap; border-radius: .6rem;
+      }
+      nav.site-nav.is-stuck .nav-btn i { margin-right: .4rem; }
+      @media (min-width: 1300px) {
+        body.theme-coolLook nav.site-nav.is-stuck,
+        body.theme-easyRead nav.site-nav.is-stuck { width: 72rem; padding: .45rem .6rem; }
+      }
+      @media (max-width: 640px) {
+        body.theme-coolLook nav.site-nav.is-stuck,
+        body.theme-easyRead nav.site-nav.is-stuck { padding: .4rem 3.5rem .4rem .5rem; }
+        nav.site-nav.is-stuck .nav-btn { padding: .4rem .7rem; font-size: .82rem; }
+      }
+      @keyframes navPop {
+        from { opacity: 0; transform: translate(-50%, -14px) scale(.98); }
+        to   { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body.theme-coolLook nav.site-nav.is-stuck,
+        body.theme-easyRead nav.site-nav.is-stuck { animation: none; }
+      }
+
+      /* ======================================================
+         Theme toggle: a round dark / light mode icon button
+         ====================================================== */
+      body .theme-toggle {
+        top: .85rem; right: 1rem; width: 2.75rem; height: 2.75rem; padding: 0; box-sizing: border-box;
+        display: inline-flex; align-items: center; justify-content: center;
+        border-radius: 50%; font-size: 1.1rem; line-height: 1; cursor: pointer; color: #fff;
+        background: rgba(10, 10, 26, 0.78); border: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        transition: transform .2s ease, background .2s ease;
+      }
+      body .theme-toggle:hover { transform: scale(1.08); }
+      body .theme-toggle:active { transform: scale(.94); }
+      body .theme-toggle:focus-visible { outline: 2px solid #8ca7fa; outline-offset: 2px; }
+      body.theme-coolLook .theme-toggle i { color: #fcd34d; }     /* sun */
+      body.theme-easyRead .theme-toggle { background: #1e40af; border-color: rgba(255, 255, 255, 0.55); }
+      body.theme-easyRead .theme-toggle:hover { background: #1d4ed8; }
+      body.theme-easyRead .theme-toggle i { color: #fff; }        /* moon */
+      @media (max-width: 480px) {
+        body .theme-toggle { top: .88rem; right: 1rem; width: 2.5rem; height: 2.5rem; font-size: 1rem; }
+      }
+      @media (prefers-reduced-motion: reduce) { body .theme-toggle { transition: none; } }
+
+    </style>
   </head>
-<center>
-  <body style="background-color:#8ca7fa;">  <!-- Background color -->
-     <h1>404 error</h1>
-  <img src="Adobe Express 2025-01-25 15.34.05.gif" alt="404" width="500" height="333">
-  <h2> Water game! Water game!</h2>
-    <p>Use this box to search our site and see if you can find what you're looking for:</p>
-    <script async src="https://cse.google.com/cse.js?cx=8211a604c7f99444e">
-  </script>
-  <div class="gcse-search"></div>
-<footer>
-  <!-- W3 schools code -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 30px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
-  border-radius: 50%;
-}
-
-.fa:hover {
-    opacity: 0.7;
-}
-
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
-
-.fa-twitter {
-  background: #55ACEE;
-  color: white;
-}
-
-
-.fa-youtube {
-  background: #bb0000;
-  color: white;
-}
-
-.fa-instagram {
-  background: #fc03a1;
-  color: white;
-}
-
-.fa-pinterest {
-  background: #cb2027;
-  color: white;
-}
-
-
-
-.fa-flickr {
-  background: #f40083;
-  color: white;
-}
-
-</style>
-<a href="https://www.facebook.com/FIRSTTeam236/" class="fa fa-facebook"></a>
-<a href="https://x.com/technoticks236" class="fa fa-twitter"></a>
-<a href="https://www.youtube.com/@thetechnoticks" class="fa fa-youtube"></a>
-<a href="https://www.instagram.com/236technoticks/" class="fa fa-instagram"></a>
-<a href="https://www.pinterest.com/team236/6" class="fa fa-pinterest"></a>
- <!--<a href="#" class="fa fa-flickr"></a>-->
-
   
-        <p>Copyright &copy; 2024-2025 Team 236 - TechnoTicks</p>
-        <p><a href="https://github.com/Team236/team236.github.io" target="_blank">GitHub Repository</a></p>
+  <body>
+    <!-- THEME TOGGLE BUTTON -->
+    <button class="theme-toggle" type="button" aria-label="Switch to light mode"><i class="fas fa-sun" aria-hidden="true"></i></button>
+
+    <!-- Header Section with Banner -->
+    <header class="gradient-bg text-white py-6">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center">
+          <a href="https://team236.github.io/" target="_blank">
+            <img src="/brighter%20banner.jpg" alt="236 Technoticks Banner" 
+                 class="header-banner disney-border hover:border-white">
+          </a>
+        </div>
+          <!-- Navigation -->
+          <div class="site-nav-slot">
+            <nav class="site-nav" aria-label="Main">
+              <div class="nav-row flex flex-wrap justify-center gap-3 md:gap-4">
+                <a href="https://team236.github.io/"  
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-home mr-2"></i>Home
+        </a>
+        
+        <a href="https://team236.github.io/about_us"  
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-users mr-2"></i>About Us
+        </a>
+        
+        <a href="https://team236.github.io/New_members"  
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-user-plus mr-2"></i>New Members
+        </a>
+        
+        <a href="https://team236.github.io/Contact_Us"  
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-envelope mr-2"></i>Contact Us
+        </a>
+        
+        <a href="https://team236.github.io/Robot_archive"  
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-robot mr-2"></i>Robot Archive
+        </a>
+        
+        <a href="https://team236.github.io/Links"  
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-link mr-2"></i>Links
+        </a>
+        <a href="https://team236.github.io/bash"  
+           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+          <i class="fas fa-beach mr-2"></i>𓆉 Bash@theBeach
+        </a>
+              </div>
+            </nav>
+          </div>
+      </div>
+    </header>
+    
+<!-- Main Content -->
+    <main class="nf-main">
+      <!-- Hero -->
+      <section class="nf-hero" aria-labelledby="nf-title">
+        <div class="nf-hero-inner">
+          <p class="nf-eyebrow">404 error</p>
+          <h1 id="nf-title">Page not found</h1>
+          <p class="nf-sub">We couldn't find that page, but the water game is still here.</p>
+        </div>
+      </section>
+
+      <div class="nf-grid">
+        <!-- The water game -->
+        <figure class="nf-card nf-game">
+          <img src="/Adobe%20Express%202025-01-25%2015.34.05.gif" width="362" height="218"
+               alt="The animated 236 TechnoTicks logo, a tick inside a ring above the number 236, bobbing on blue water">
+          <figcaption><h2>Water game! Water game!</h2></figcaption>
+        </figure>
+
+        <!-- Search -->
+        <section class="nf-card nf-search" aria-labelledby="nf-search-h">
+          <h2 id="nf-search-h">Looking for something?</h2>
+          <p>Use this box to search our site and see if you can find what you're looking for:</p>
+          <div class="nf-cse"><div class="gcse-search"></div></div>
+          <script async src="https://cse.google.com/cse.js?cx=8211a604c7f99444e"></script>
+          <div class="nf-links">
+            <a class="nf-btn" href="https://team236.github.io/"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+            <a class="nf-btn nf-btn-ghost" href="https://team236.github.io/Robot_archive"><i class="fas fa-robot" aria-hidden="true"></i>Robot Archive</a>
+            <a class="nf-btn nf-btn-ghost" href="https://team236.github.io/Contact_Us"><i class="fas fa-envelope" aria-hidden="true"></i>Contact Us</a>
+          </div>
+        </section>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center">
+          <!-- Social Media Icons -->
+          <div class="flex space-x-4 mb-6">
+            <a href="https://www.facebook.com/FIRSTTeam236/" class="footer-icon bg-blue-600 hover:bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a href="https://x.com/technoticks236" class="footer-icon bg-blue-400 hover:bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="https://www.youtube.com/@thetechnoticks" class="footer-icon bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-youtube text-xl"></i>
+            </a>
+            <a href="https://www.instagram.com/236technoticks/" class="footer-icon bg-pink-600 hover:bg-pink-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="https://www.pinterest.com/team236/6" class="footer-icon bg-red-500 hover:bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fab fa-pinterest text-xl"></i>
+            </a>
+          </div>
+          
+          <p class="text-sm mb-2">Copyright &copy; 2024-2025 Team 236 - TechnoTicks</p>
+          <a href="https://github.com/Team236/team236.github.io" target="_blank" class="text-blue-300 hover:text-blue-100 text-sm mb-4">
+            <i class="fab fa-github mr-1"></i> GitHub Repository
+          </a>
+          
+        </div>
+      </div>
     </footer>
-  </center> 
+
+    <script>
+      // Optional: Add animation when banner is clicked
+      document.querySelector('.header-banner').addEventListener('click', function() {
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = 'scale(1.02)';
+        }, 100);
+      });
+      
+    </script>
+      <!-- Theme switcher -->
+    <script>
+      (function(){
+        const body = document.body;
+        const btn = document.querySelector('.theme-toggle');
+
+        // default to coolLook
+        body.classList.add('theme-coolLook');
+
+        function setLabel() {
+          const isCool = body.classList.contains('theme-coolLook');
+          var label = isCool ? 'Switch to light mode' : 'Switch to dark mode';
+          btn.innerHTML = isCool ? '<i class="fas fa-sun" aria-hidden="true"></i>' : '<i class="fas fa-moon" aria-hidden="true"></i>';
+          btn.setAttribute('aria-label', label);
+          btn.title = label;
+        }
+
+        btn.addEventListener('click', function() {
+          body.classList.toggle('theme-coolLook');
+          body.classList.toggle('theme-easyRead');
+          setLabel();
+        });
+
+        setLabel();
+      })();
+    </script>
+        <!-- Nav: floats on scroll -->
+    <script>
+      (function () {
+        var nav = document.querySelector('.site-nav');
+        var slot = document.querySelector('.site-nav-slot');
+        if (!nav || !slot) return;
+        var stuck = false, ticking = false;
+
+        // the slot keeps the nav's natural height so nothing jumps when the nav pops out
+        function measure() {
+          var was = nav.classList.contains('is-stuck');
+          nav.classList.remove('is-stuck');
+          slot.style.minHeight = '';
+          slot.style.minHeight = nav.offsetHeight + 'px';
+          if (was) nav.classList.add('is-stuck');
+        }
+        // on narrow screens the floating bar scrolls sideways: bring the current page into view
+        function centerCurrent() {
+          var row = nav.querySelector('.nav-row'), cur = nav.querySelector('.nav-current');
+          if (!row || !cur || row.scrollWidth <= row.clientWidth) return;
+          row.scrollLeft += cur.getBoundingClientRect().left - row.getBoundingClientRect().left - (row.clientWidth - cur.offsetWidth) / 2;
+        }
+        function update() {
+          ticking = false;
+          var should = slot.getBoundingClientRect().top < 10;   // nav's spot has reached the top
+          if (should !== stuck) {
+            stuck = should; nav.classList.toggle('is-stuck', stuck);
+            if (stuck) centerCurrent();
+          }
+        }
+        function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', function () { measure(); onScroll(); });
+        window.addEventListener('load', function () { measure(); update(); });
+        // Tailwind's CDN builds its styles after first paint, so re-measure whenever the nav changes size
+        if ('ResizeObserver' in window) {
+          new ResizeObserver(function () {
+            if (!nav.classList.contains('is-stuck')) { slot.style.minHeight = nav.offsetHeight + 'px'; update(); }
+          }).observe(nav);
+        }
+        measure(); update();
+      })();
+    </script>
+  </body>
 </html>
