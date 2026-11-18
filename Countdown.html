@@ -33,10 +33,6 @@ header{background:linear-gradient(135deg,#8ca7fa,#5a7df5);color:#fff;padding:1.5
 body.theme-coolLook header{background:var(--hdr);backdrop-filter:blur(6px)}
 .brand{font-size:clamp(2rem,7vw,3.5rem);font-weight:900;letter-spacing:.02em;margin:0}
 .header-banner{max-height:180px;max-width:100%;object-fit:contain;border-radius:24px;box-shadow:0 4px 6px rgba(0,0,0,.1);transition:all .3s ease;cursor:pointer}
-.deepsite-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .9rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:12px;font-size:.9rem;color:#fff;text-decoration:none;position:relative;overflow:hidden;transition:background .3s ease,transform .2s ease;margin-top:1rem;animation:badgePulse 2.5s infinite}
-.deepsite-badge:hover{background:rgba(255,255,255,.15);transform:scale(1.03)}
-.deepsite-logo{width:20px;height:20px}
-@keyframes badgePulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
 .pill{display:inline-block;background:#fff;color:#1d4ed8;padding:.25rem .85rem;border-radius:999px;font-weight:500;font-size:.9rem;margin-top:.75rem}
 
 nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;max-width:72rem;margin:2rem auto 0;padding:1rem}
@@ -132,9 +128,7 @@ footer a.gh{color:#93c5fd;text-decoration:none;font-size:.85rem}
     <a href="https://www.pinterest.com/team236/6" class="pn" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
   </div>
   <p>Copyright &copy; 2024-2026 Team 236 - TechnoTicks</p>
-  <a class="gh" href="https://github.com/Team236/team236.github.io" target="_blank" rel="noopener">GitHub Repository</a><br>
-  <a href="#" class="deepsite-badge"><img src="https://huggingface.co/spaces/enzostvs/deepsite/resolve/main/public/logo.svg" alt="DeepSite Logo" class="deepsite-logo"><span>Made partially with DeepSite</span></a>
-</footer>
+  <a class="gh" href="https://github.com/Team236/team236.github.io" target="_blank" rel="noopener">GitHub Repository</a></footer>
 
 <script>
 (function(){
@@ -174,15 +168,6 @@ footer a.gh{color:#93c5fd;text-decoration:none;font-size:.85rem}
     setTimeout(function(){ b.style.transform = 'scale(1)'; }, 200);
   });
 
-  // DeepSite ripple (from the team site)
-  document.querySelector('.deepsite-badge').addEventListener('click', function(e){
-    e.preventDefault();
-    var r = document.createElement('span'), box = this.getBoundingClientRect();
-    r.style.cssText = 'position:absolute;background:#fff;opacity:.3;border-radius:50%;width:10px;height:10px;transform:scale(0);transition:transform .6s ease,opacity .6s ease;left:' + (e.clientX - box.left - 5) + 'px;top:' + (e.clientY - box.top - 5) + 'px';
-    this.appendChild(r);
-    setTimeout(function(){ r.style.transform = 'scale(40)'; r.style.opacity = '0'; }, 10);
-    setTimeout(function(){ r.remove(); }, 600);
-  });
 
   // Theme toggle (defaults to coolLook, like the team site)
   var saved = null;

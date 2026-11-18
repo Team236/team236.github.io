@@ -11,7 +11,7 @@ This is the website for FIRST Robotics Team 236, the 'TechnoTicks.' It's a plain
 
 ~~Proudly using no plug-ins and junk in the back end (- 'tick toc'); just pure, sweet, HTML and minimal CSS.~~
 
-It started as pure HTML and has since been enhanced with some vibe coding done with AI (see [Credits](#credits)).
+It started as pure HTML and has since been enhanced with some vibe coding done with AI.
 
 > **Heads up:** Be careful when touching the code. MY CODE IS BAD AND WILL BREAK. (Woody)
 
@@ -37,7 +37,7 @@ A few pages aren't in the top bar. They're experiments and leftovers:
 | `First count down clock.html` | The original "Tick Toc" countdown clock |
 | `3D.html` | A `<model-viewer>` 3D model demo |
 | `test1.html`, `wtestscode.html` | Older test pages / early alpha of the new site |
-| `404.html` | The "page not found" page |
+| `404.html` | The "page not found" page: the water game GIF, a Google search box for the site, and links home. GitHub shows it at any broken address, so it uses root-based paths like `/brighter%20banner.jpg` instead of relative ones |
 
 ## Features
 
@@ -174,8 +174,6 @@ Nothing on the home page's stats bar or results section is typed in by hand. Whe
 ## Credits
 
 Code by Woody, Mike, and GitHub user ko-sako "Kayo Osako."
-
-Thanks to the Deepsite AI model for code help. In addition, some code was made with help from Deepseek AI.
 
 Thanks,
 Woody (self-proclaimed head website coder)

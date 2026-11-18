@@ -72,28 +72,8 @@
         pointer-events: none;
       }
       
-      /* DeepSite disclaimer styles */
-      .deepsite-badge {
-        background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
-        border-radius: 9999px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        padding: 8px 16px;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        text-decoration: none;
-      }
       
-      .deepsite-badge:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-      }
       
-      .deepsite-logo {
-        width: 20px;
-        height: 20px;
-      }
       
       .pulse {
         animation: pulse 2s infinite;
@@ -309,9 +289,6 @@
             <img src="bashbanner.png" alt="236 Technoticks Banner" 
                  class="header-banner disney-border hover:border-white">
           </a>
-          <p class="text-sm md:text-base bg-white text-blue-700 px-3 py-1 rounded-full font-medium mt-3">
-            Website under active development
-          </p>
         </div>
           <!-- Navigation -->
           <div class="site-nav-slot">
@@ -418,11 +395,6 @@
             <i class="fab fa-github mr-1"></i> GitHub Repository
           </a>
           
-          <!-- DeepSite Badge in Footer -->
-          <a href="#" class="deepsite-badge pulse">
-            <img src="https://huggingface.co/spaces/enzostvs/deepsite/resolve/main/public/logo.svg" alt="DeepSite Logo" class="deepsite-logo">
-            <span>Made partially with DeepSite</span>
-          </a>
         </div>
       </div>
     </footer>
@@ -436,30 +408,6 @@
         }, 100);
       });
       
-      // Add ripple effect to DeepSite badge
-      document.querySelector('.deepsite-badge').addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const ripple = document.createElement('span');
-        ripple.className = 'absolute bg-white opacity-30 rounded-full';
-        ripple.style.width = '10px';
-        ripple.style.height = '10px';
-        ripple.style.left = (e.clientX - e.target.getBoundingClientRect().left - 5) + 'px';
-        ripple.style.top = (e.clientY - e.target.getBoundingClientRect().top - 5) + 'px';
-        ripple.style.transform = 'scale(0)';
-        ripple.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
-        
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-          ripple.style.transform = 'scale(40)';
-          ripple.style.opacity = '0';
-        }, 10);
-        
-        setTimeout(() => {
-          ripple.remove();
-        }, 600);
-      });
     </script>
       <!-- Theme switcher -->
     <script>
