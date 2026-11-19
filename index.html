@@ -286,9 +286,9 @@
           radial-gradient(1.5px 1.5px at 58% 18%, rgba(255,255,255,.7), transparent 60%),
           radial-gradient(1px 1px at 76% 52%, rgba(255,255,255,.55), transparent 60%),
           radial-gradient(1.5px 1.5px at 91% 30%, rgba(255,255,255,.7), transparent 60%),
-          radial-gradient(circle at 15% 15%, rgba(128, 0, 255, 0.38), transparent 55%),
-          radial-gradient(circle at 90% 85%, rgba(30, 64, 175, 0.5), transparent 55%),
-          rgba(5, 5, 20, 0.3);
+          radial-gradient(circle at 15% 15%, rgba(128, 0, 255, calc(0.38 * var(--fp-veil, 1))), transparent 55%),
+          radial-gradient(circle at 90% 85%, rgba(30, 64, 175, calc(0.5 * var(--fp-veil, 1))), transparent 55%),
+          rgba(5, 5, 20, calc(0.3 * var(--fp-veil, 1)));
       }
       .fp-clip::before {      /* the card's outline: drawn on top so it takes no room (and shows no seam) until the card forms */
         content: ''; position: absolute; inset: 0; z-index: 4; pointer-events: none; border-radius: inherit;
@@ -299,15 +299,16 @@
       .fp-clip::after {       /* a soft dark top so the logo and nav read well over any photo; fades out as the card forms */
         content: ''; position: absolute; left: 0; right: 0; top: 0; z-index: 3; pointer-events: none;
         height: calc(var(--hdr-h, 0px) + 4rem); opacity: calc(1 - var(--fp-p, 0));
-        background: linear-gradient(180deg, rgba(5, 5, 20, 0.45), rgba(5, 5, 20, 0));
+        background: linear-gradient(180deg, rgba(5, 5, 20, calc(0.45 * var(--fp-veil, 1))), rgba(5, 5, 20, 0));
       }
       .fp-stage { position: absolute; inset: 0; opacity: var(--fp-see, 0.86); }       /* 1 = solid photos, lower = more of the page colours show through */
-      body.theme-easyRead .fp-hero { --fp-see: 0.9; }
+      .fp-hero { --fp-veil: 0.45; }                                              /* how strong the dark base, glows and dark fades are: 1 = the old look, 0 = none */
+      body.theme-easyRead .fp-hero { --fp-see: 0.9; --fp-veil: 0.4; }
       .fp-shade {
         position: absolute; inset: 0; z-index: 2; pointer-events: none;
         background:
-          linear-gradient(90deg, rgba(5, 5, 20, 0.8) 0%, rgba(5, 5, 20, 0.42) 38%, rgba(5, 5, 20, 0) 72%),
-          linear-gradient(0deg, rgba(5, 5, 20, 0.78) 0%, rgba(5, 5, 20, 0) 42%);
+          linear-gradient(90deg, rgba(5, 5, 20, calc(0.8 * var(--fp-veil, 1))) 0%, rgba(5, 5, 20, calc(0.42 * var(--fp-veil, 1))) 38%, rgba(5, 5, 20, 0) 72%),
+          linear-gradient(0deg, rgba(5, 5, 20, calc(0.78 * var(--fp-veil, 1))) 0%, rgba(5, 5, 20, 0) 42%);
       }
 
       /* the header floats over the slideshow; its own background fades in as you scroll */
@@ -342,8 +343,9 @@
       @keyframes fpSpin { to { transform: rotate(360deg); } }
 
       /* copy (bottom left, like Simbotics) */
-      .fp-copy { position: relative; z-index: 1; max-width: calc(58rem + var(--g)); padding: 0 clamp(1.5rem, 4vw, 3.25rem) clamp(2.75rem, 5vw, 4.25rem) calc(var(--g) + clamp(1.5rem, 4vw, 3.25rem)); color: #fff; pointer-events: none; }
+      .fp-copy { position: relative; z-index: 1; max-width: calc(58rem + var(--g)); padding: 0 clamp(1.5rem, 4vw, 3.25rem) clamp(2.75rem, 5vw, 4.25rem) calc(var(--g) + clamp(1.5rem, 4vw, 3.25rem)); color: #fff; pointer-events: none; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5); }
       .fp-copy a { pointer-events: auto; }
+      .fp-copy .fp-btn { text-shadow: none; }
       .fp-kicker { margin: 0 0 .9rem; font-size: .85rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #8ca7fa; }
       .fp-title { margin: 0; line-height: .95; }
       .fp-title-small { display: block; font-size: clamp(1.4rem, 3.2vw, 2.2rem); font-weight: 500; letter-spacing: .02em; color: rgba(255, 255, 255, 0.9); }
