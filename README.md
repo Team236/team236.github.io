@@ -44,7 +44,7 @@ A few pages aren't in the top bar. They're experiments and leftovers:
 - **Dark and light mode.** *Cool Look* (dark, animated gradient with a frosted-glass feel) is the default and *EasyRead* (light, high contrast) is the other. Switch with the round sun/moon button in the top right corner.
 - **Front page slideshow.** The home page plays every photo and video clip in the `front page images` folder. It fills the top of the page behind the logo and nav, then pulls in to a rounded card as you scroll. Drop files in and they appear on the site, with captions taken from the file names. It handles `.jpg`, `.png`, `.webp`, `.avif`, `.gif`, iPhone `.heic`, and `.mp4`, `.mov` and `.webm` clips. See [the front page slideshow](#the-front-page-slideshow) below.
 - **Live stats from The Blue Alliance.** The numbers bar and the "On the field" results on the home page are pulled straight from [The Blue Alliance](https://www.thebluealliance.com) (TBA), so they update themselves. See [the live numbers section](#live-numbers-and-results-from-the-blue-alliance) below.
-- **Floating nav.** The nav buttons sit inside the top banner. Scroll down and they pop out into their own floating bar (the banner itself scrolls away), with the sun/moon button tucked into its right end. The page you're on is highlighted, and on small screens the bar swipes sideways.
+- **Top bar.** Every page has the same slim top bar: the team logo on the left, the page links and the round sun/moon button on the right. When you scroll, it shrinks into a compact frosted bar that stays at the top. The page you're on is highlighted, and on phones the links sit in a row under the logo that swipes sideways. Its look lives in `site-bar.css` and the shrink-on-scroll in `site-bar.js`, so a change there applies to every page.
 - **Bash @ the Beach gallery.** The Bash page shows a photo grid of everything in the `bash images` folder, with a full-screen viewer (arrows, swipe, Esc to close). It finds the files the same way the front page slideshow does. See `bash images/README.md`.
 - **Robot Archive.** One card per season, with a sticky "jump to a season" bar, photos or embedded slideshows, and links to Statbotics, The Blue Alliance and 3D models. Each card has a copy-link button for sharing a specific year.
 - **Clean URLs.** Links don't use `.html`, so the About page is `/about_us`, not `/about_us.html`. GitHub Pages serves both.
@@ -153,7 +153,7 @@ Nothing on the home page's stats bar or results section is typed in by hand. Whe
 ### Adding a page
 
 1. Copy an existing page (`about_us.html` is a good template) and change its content.
-2. Add it to the nav buttons **on every page** (inside the `<nav class="site-nav">` in the header), using the extensionless URL (`https://team236.github.io/your_page`). Give the button for the page itself the `nav-current` class and `aria-current="page"` so it's highlighted.
+2. Add a link to the top bar **on every page** (inside the `<nav class="site-bar-nav">` in the header), using the extensionless URL (`https://team236.github.io/your_page`). Give the link for the page itself the `nav-current` class and `aria-current="page"` so it's highlighted. Keep the `site-bar.css` link in the `<head>` and the `site-bar.js` script at the bottom.
 3. File names are case-sensitive on GitHub Pages: `Robot_archive` works, `robot_archive` doesn't.
 
 ## Repo layout
