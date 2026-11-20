@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>236 Technoticks</title>
+    <title>Bash @ the Beach | FIRST LEGO League | 236 TechnoTicks</title>
+    <meta name="description" content="Bash @ the Beach is a FIRST LEGO League event hosted by FRC Team 236, the TechnoTicks, where younger students learn robotics.">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -274,6 +275,62 @@
       }
       @media (prefers-reduced-motion: reduce) { body .theme-toggle { transition: none; } }
 
+
+      /* ======================================================
+         Bash @ the Beach (FLL) page
+         ====================================================== */
+      .bb-main { display: grid; gap: 1.5rem; max-width: 72rem; }
+      .bb-card { border-radius: 1rem; padding: 1.75rem; }
+      body.theme-coolLook .bb-card { background: rgba(15, 15, 30, 0.72); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+      body.theme-easyRead .bb-card { background: #fff; color: #111; border: 1px solid rgba(30,64,175,.14); box-shadow: 0 10px 24px -16px rgba(30,64,175,.45); }
+      .bb-hero { text-align: center; }
+      .bb-eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin-bottom: .4rem; }
+      .bb-h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 700; line-height: 1.1; }
+      .bb-tag { display: inline-block; margin: .75rem 0 1rem; padding: .35rem .9rem; border-radius: 999px; font-weight: 700; color: #fff; background-image: linear-gradient(135deg, #5a7df5, #8b5cf6); }
+      .bb-lead { font-size: 1.1rem; line-height: 1.7; max-width: 46rem; margin: 0 auto; }
+      .bb-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1.25rem; }
+      .bb-pill { display: inline-flex; align-items: center; gap: .45rem; padding: .45rem .85rem; border-radius: .7rem; font-size: .92rem; font-weight: 500; }
+      body.theme-coolLook .bb-pill { background: rgba(140,167,250,.14); border: 1px solid rgba(140,167,250,.3); }
+      body.theme-easyRead .bb-pill { background: #eef2ff; border: 1px solid #c7d2fe; color: #1e3a8a; }
+      .bb-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+      .bb-h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: .5rem; display: flex; align-items: center; gap: .5rem; }
+      .bb-h2-lg { font-size: clamp(1.5rem, 4vw, 2rem); }
+      .bb-info p { line-height: 1.6; margin-bottom: 1rem; }
+      .bb-btn { display: inline-flex; align-items: center; gap: .45rem; padding: .55rem 1rem; border-radius: .6rem; font-weight: 500; color: #fff; background: #1e40af; transition: transform .2s ease, background .2s ease; }
+      .bb-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
+      .bb-sub { opacity: .85; margin-bottom: 1.25rem; }
+      .bb-gallery { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
+      .bb-tile { position: relative; aspect-ratio: 4 / 3; border-radius: .8rem; overflow: hidden; padding: 0; border: 0; cursor: zoom-in; background: rgba(140,167,250,.15); }
+      .bb-tile img, .bb-tile video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+      .bb-tile:hover img, .bb-tile:hover video { transform: scale(1.05); }
+      .bb-tile:focus-visible { outline: 3px solid #8ca7fa; outline-offset: 2px; }
+      .bb-tile .bb-tile-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.4rem .7rem .5rem; font-size: .85rem; text-align: left; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.7)); }
+      .bb-tile .bb-play { position: absolute; top: .5rem; right: .5rem; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; background: rgba(0,0,0,.55); font-size: .8rem; }
+      .bb-ph { aspect-ratio: 4 / 3; border-radius: .8rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; text-align: center; padding: 1rem; font-size: .9rem; border: 2px dashed rgba(140,167,250,.5); opacity: .8; }
+      .bb-ph i { font-size: 1.8rem; opacity: .7; }
+      .bb-more { margin-top: 1.25rem; text-align: center; }
+      .bb-more a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+      .bb-map { padding: .5rem; overflow: hidden; }
+      .bb-map iframe { width: 100%; height: 22rem; border: 0; border-radius: .75rem; display: block; }
+      /* lightbox */
+      .bb-lb { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: rgba(5,5,15,.92); padding: 1rem; }
+      .bb-lb[hidden] { display: none; }
+      .bb-lb-fig { max-width: min(92vw, 70rem); max-height: 88vh; display: flex; flex-direction: column; align-items: center; gap: .6rem; margin: 0; }
+      .bb-lb-media img, .bb-lb-media video { max-width: 100%; max-height: 80vh; border-radius: .6rem; display: block; }
+      .bb-lb-cap { color: #fff; font-size: .95rem; text-align: center; }
+      .bb-lb-btn { position: absolute; width: 2.8rem; height: 2.8rem; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); color: #fff; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: pointer; }
+      .bb-lb-btn:hover { background: rgba(255,255,255,.22); }
+      .bb-lb-close { top: 1rem; right: 1rem; }
+      .bb-lb-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+      .bb-lb-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+      @media (max-width: 640px) {
+        .bb-card { padding: 1.25rem; }
+        .bb-gallery { grid-template-columns: repeat(2, 1fr); gap: .5rem; }
+        .bb-map iframe { height: 16rem; }
+        .bb-lb-prev, .bb-lb-next { top: auto; bottom: 1rem; transform: none; }
+      }
+      @media (prefers-reduced-motion: reduce) { .bb-tile img, .bb-tile video, .bb-btn { transition: none; } }
+
     </style>
   </head>
   
@@ -286,7 +343,7 @@
       <div class="container mx-auto px-4">
         <div class="flex flex-col items-center">
           <a href="https://team236.github.io/" target="_blank">
-            <img src="bashbanner.png" alt="236 Technoticks Banner" 
+            <img src="bashbanner.png" alt="Bash @ the Beach banner" 
                  class="header-banner disney-border hover:border-white">
           </a>
         </div>
@@ -325,7 +382,7 @@
         </a>
         <a href="https://team236.github.io/bash"  
            aria-current="page" class="nav-btn nav-current bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-beach mr-2"></i>𓆉 Bash@theBeach
+          <i class="fas fa-umbrella-beach mr-2"></i>𓆉 Bash@theBeach
         </a>
               </div>
             </nav>
@@ -334,36 +391,73 @@
     </header>
     
     <!-- Main Content -->
-    <main class="container mx-auto px-4 my-10">
-      <div class="robot-slideshow overflow-hidden">
+    <main class="container mx-auto px-4 my-10 bb-main">
 
-<center>
+      <!-- ================= Intro ================= -->
+      <section class="bb-card bb-hero">
+        <p class="bb-eyebrow"><i class="fas fa-umbrella-beach" aria-hidden="true"></i> Hosted by Team 236, the TechnoTicks</p>
+        <h1 class="bb-h1">Bash @ the Beach</h1>
+        <p class="bb-tag">Now a <em>FIRST</em>&reg; LEGO&reg; League event</p>
+        <p class="bb-lead">
+          Bash @ the Beach started as an off-season <em>FIRST</em> Robotics Competition event for high school teams.
+          Today it's a <strong><em>FIRST</em> LEGO League (FLL)</strong> event, where younger students build and program
+          LEGO robots, many of them for the very first time, and get their first taste of teamwork, problem solving
+          and gracious professionalism.
+        </p>
+        <div class="bb-pills" role="list">
+          <span class="bb-pill" role="listitem"><i class="fas fa-cubes" aria-hidden="true"></i>Build with LEGO</span>
+          <span class="bb-pill" role="listitem"><i class="fas fa-code" aria-hidden="true"></i>Program a robot</span>
+          <span class="bb-pill" role="listitem"><i class="fas fa-lightbulb" aria-hidden="true"></i>Solve a challenge</span>
+          <span class="bb-pill" role="listitem"><i class="fas fa-handshake" aria-hidden="true"></i>Gracious professionalism</span>
+        </div>
+      </section>
 
-<p style="font-size: 18px;">Join us for the 25th* annual Bash @ the Beach; A super chill off-season FIRST Robotics competition event aimed at training new team members and encouraging gracious professionalism. 24 teams expected. </p>
+      <!-- ================= Key info ================= -->
+      <section class="bb-grid">
+        <div class="bb-card bb-info">
+          <h2 class="bb-h2"><i class="fas fa-calendar-day" aria-hidden="true"></i> When</h2>
+          <p>Date to be announced</p>
+          <a target="_blank" rel="noopener" class="bb-btn" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=Nmo5YjZnZ3A4MHJvb2pzYWVkZnJmcDJoc3QgZ29zc2ZAcmVnaW9uMTgub3Jn&amp;tmsrc=gossf%40region18.org">
+            <i class="far fa-calendar-plus" aria-hidden="true"></i> Add to Google Calendar
+          </a>
+        </div>
+        <div class="bb-card bb-info">
+          <h2 class="bb-h2"><i class="fas fa-location-dot" aria-hidden="true"></i> Where</h2>
+          <p>Lyme-Old Lyme High School<br>Old Lyme, Connecticut</p>
+          <a target="_blank" rel="noopener" class="bb-btn" href="https://maps.google.com/?q=Lyme-Old+Lyme+High+School">
+            <i class="fas fa-map" aria-hidden="true"></i> Get directions
+          </a>
+        </div>
+        <div class="bb-card bb-info">
+          <h2 class="bb-h2"><i class="fas fa-circle-question" aria-hidden="true"></i> Questions?</h2>
+          <p>Teams, families and volunteers are welcome to reach out.</p>
+          <a class="bb-btn" href="mailto:nullemail@backsoon.net"><i class="fas fa-envelope" aria-hidden="true"></i> Email us</a>
+        </div>
+      </section>
 
-<br>
-<h1 style="font-size: 36px;">Questions?</h1>
-<p style="font-size: 18px;"><a href="mailto:nullemail@backsoon.net">nullemail@backsoon.net</a></p>
+      <!-- ================= Gallery ================= -->
+      <section class="bb-card" aria-labelledby="bb-gal-h">
+        <p class="bb-eyebrow">Gallery</p>
+        <h2 class="bb-h2 bb-h2-lg" id="bb-gal-h">First robots, big smiles</h2>
+        <p class="bb-sub">Young builders learning robotics at Bash @ the Beach. Tap a photo to see it larger.</p>
+        <div class="bb-gallery" id="bb-gallery" aria-live="polite"></div>
+        <p class="bb-more">
+          More photos on our
+          <a href="https://www.instagram.com/236technoticks/" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a>
+        </p>
+      </section>
 
-<h1 style="font-size: 36px;">Key info:</h1>
-<p style="font-size: 18px;">Date TBD 2025</p> <a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=Nmo5YjZnZ3A4MHJvb2pzYWVkZnJmcDJoc3QgZ29zc2ZAcmVnaW9uMTgub3Jn&amp;tmsrc=gossf%40region18.org"><img border="0" src="https://calendar.google.com/calendar/images/ext/gc_button1_en.gif" alt="Google Calendar"></a>
-<br>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2541.725117032167!2d-72.32541249648045!3d41.318369149100725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e6180f331b174d%3A0xd02eddba7a7c878c!2sLyme-Old%20Lyme%20High%20School!5e0!3m2!1sen!2sus!4v1750804745710!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
+      <!-- ================= Map ================= -->
+      <section class="bb-card bb-map">
+        <iframe title="Map to Lyme-Old Lyme High School" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2541.725117032167!2d-72.32541249648045!3d41.318369149100725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e6180f331b174d%3A0xd02eddba7a7c878c!2sLyme-Old%20Lyme%20High%20School!5e0!3m2!1sen!2sus!4v1750804745710!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </section>
 
-</center>
-
-
-
-
-
-
-
-
-
-
-
-
-        
+      <!-- lightbox -->
+      <div class="bb-lb" id="bb-lb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+        <button class="bb-lb-btn bb-lb-close" type="button" aria-label="Close"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+        <button class="bb-lb-btn bb-lb-prev" type="button" aria-label="Previous photo"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+        <figure class="bb-lb-fig"><div class="bb-lb-media"></div><figcaption class="bb-lb-cap"></figcaption></figure>
+        <button class="bb-lb-btn bb-lb-next" type="button" aria-label="Next photo"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
       </div>
     </main>
     
@@ -477,6 +571,126 @@
           }).observe(nav);
         }
         measure(); update();
+      })();
+    </script>
+    <!-- Bash gallery: shows every photo/clip in the "bash images" folder -->
+    <script>
+      (function () {
+        // ---------- settings ----------
+        var FOLDER = 'bash images';                 // folder in the repo (next to bash.html)
+        var REPO = 'Team236/team236.github.io';     // used to list the folder
+        var CACHE_KEY = 'bb-gallery-v1', CACHE_MS = 5 * 60 * 1000;
+        var PLACEHOLDERS = 6;                       // empty tiles shown until photos are added
+        var IMG_EXT = ['jpg', 'jpeg', 'png', 'webp', 'avif', 'gif', 'svg', 'bmp'];
+        var VID_EXT = ['mp4', 'm4v', 'mov', 'webm', 'ogv'];
+
+        var grid = document.getElementById('bb-gallery');
+        var lb = document.getElementById('bb-lb');
+        if (!grid || !lb) return;
+        var base = encodeURIComponent(FOLDER) + '/';
+        var items = [], cur = 0, lastFocus = null;
+
+        function ext(n) { var m = /\.([a-z0-9]+)$/i.exec(n); return m ? m[1].toLowerCase() : ''; }
+        function kindOf(n) { var e = ext(n); return IMG_EXT.indexOf(e) > -1 ? 'image' : (VID_EXT.indexOf(e) > -1 ? 'video' : ''); }
+        function captionFrom(name) {
+          var s = name.replace(/\.[^.]+$/, '');
+          if (/^(img|dsc|dscn|dscf|pxl|mvimg|vid|mov|photo|image|screenshot)[-_ ]?\d/i.test(s) || /^\d{8}[-_ ]\d+/.test(s)) return '';
+          s = s.replace(/^\d{1,3}[-_. ]+/, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+          return s.replace(/(^|\s)([a-z])/g, function (m, a, b) { return a + b.toUpperCase(); });
+        }
+        function getJSON(url) {
+          return fetch(url).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+        }
+        function fromApi() {
+          return getJSON('https://api.github.com/repos/' + REPO + '/contents/' + encodeURIComponent(FOLDER)).then(function (list) {
+            if (!Array.isArray(list)) throw new Error('bad listing');
+            return list.filter(function (f) { return f.type === 'file'; }).map(function (f) { return f.name; });
+          });
+        }
+        function fromManifest() {
+          return getJSON(base + 'manifest.json').then(function (m) {
+            var arr = Array.isArray(m) ? m : (m && m.files);
+            if (!Array.isArray(arr)) throw new Error('bad manifest');
+            return arr;
+          });
+        }
+        function readCache() { try { return JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) { return null; } }
+        function writeCache(n) { try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), names: n })); } catch (e) {} }
+        function findFiles() {
+          var c = readCache();
+          if (c && c.names && Date.now() - c.t < CACHE_MS) return Promise.resolve(c.names);
+          return fromApi().then(function (n) { writeCache(n); return n; })
+            .catch(function () { return fromManifest(); })
+            .catch(function () { return (c && c.names) || []; });
+        }
+
+        function placeholders() {
+          grid.innerHTML = '';
+          for (var i = 0; i < PLACEHOLDERS; i++) {
+            var d = document.createElement('div');
+            d.className = 'bb-ph';
+            d.innerHTML = '<i class="fas fa-camera" aria-hidden="true"></i><span>Photos coming soon</span>';
+            grid.appendChild(d);
+          }
+        }
+        function render(names) {
+          items = names.filter(function (n) { return typeof n === 'string' && !/^[._~]/.test(n) && kindOf(n); })
+            .sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }); })
+            .map(function (n) { return { url: base + encodeURIComponent(n), kind: kindOf(n), caption: captionFrom(n) }; });
+          if (!items.length) { placeholders(); return; }
+          grid.innerHTML = '';
+          items.forEach(function (it, i) {
+            var b = document.createElement('button');
+            b.type = 'button'; b.className = 'bb-tile';
+            b.setAttribute('aria-label', (it.caption || 'Photo ' + (i + 1)) + ', open larger');
+            var m;
+            if (it.kind === 'video') {
+              m = document.createElement('video'); m.src = it.url + '#t=0.1'; m.muted = true; m.playsInline = true; m.preload = 'metadata';
+              var p = document.createElement('span'); p.className = 'bb-play'; p.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i>'; b.appendChild(p);
+            } else {
+              m = document.createElement('img'); m.src = it.url; m.loading = 'lazy'; m.decoding = 'async';
+              m.alt = it.caption || 'Students learning robotics at Bash @ the Beach';
+            }
+            m.addEventListener('error', function () { b.remove(); });
+            b.insertBefore(m, b.firstChild);
+            if (it.caption) { var c = document.createElement('span'); c.className = 'bb-tile-cap'; c.textContent = it.caption; b.appendChild(c); }
+            b.addEventListener('click', function () { open(i); });
+            grid.appendChild(b);
+          });
+        }
+
+        // ---------- lightbox ----------
+        var media = lb.querySelector('.bb-lb-media'), cap = lb.querySelector('.bb-lb-cap');
+        function show(i) {
+          cur = (i + items.length) % items.length;
+          var it = items[cur], el;
+          media.innerHTML = '';
+          if (it.kind === 'video') { el = document.createElement('video'); el.src = it.url; el.controls = true; el.autoplay = true; el.playsInline = true; }
+          else { el = document.createElement('img'); el.src = it.url; el.alt = it.caption || 'Students learning robotics at Bash @ the Beach'; }
+          media.appendChild(el);
+          cap.textContent = (it.caption ? it.caption + '  ·  ' : '') + (cur + 1) + ' / ' + items.length;
+        }
+        function open(i) { lastFocus = document.activeElement; lb.hidden = false; document.body.style.overflow = 'hidden'; show(i); lb.querySelector('.bb-lb-close').focus(); }
+        function close() { lb.hidden = true; media.innerHTML = ''; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+        lb.querySelector('.bb-lb-close').addEventListener('click', close);
+        lb.querySelector('.bb-lb-prev').addEventListener('click', function () { show(cur - 1); });
+        lb.querySelector('.bb-lb-next').addEventListener('click', function () { show(cur + 1); });
+        lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+        document.addEventListener('keydown', function (e) {
+          if (lb.hidden) return;
+          if (e.key === 'Escape') close();
+          else if (e.key === 'ArrowLeft') show(cur - 1);
+          else if (e.key === 'ArrowRight') show(cur + 1);
+        });
+        var sx = null;
+        lb.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+        lb.addEventListener('touchend', function (e) {
+          if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; sx = null;
+          if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+        });
+
+        placeholders();
+        findFiles().then(render);
       })();
     </script>
   </body>
