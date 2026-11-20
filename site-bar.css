@@ -33,7 +33,7 @@ body .site-bar.is-collapsed::before {
 body.theme-coolLook .site-bar.is-collapsed::before { background: rgba(8, 8, 24, 0.88); }
 
 .site-bar-inner {
-  width: 100%; max-width: 76rem; margin: 0 auto; padding: 0 1.5rem;
+  box-sizing: border-box; width: 100%; max-width: 76rem; margin: 0 auto; padding: 0 1.5rem;
   display: flex; align-items: center; gap: 1.5rem;
 }
 
