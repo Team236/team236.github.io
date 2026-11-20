@@ -495,63 +495,28 @@
       @media (prefers-reduced-motion: reduce) { body .theme-toggle { transition: none; } }
 
     </style>
+      <link rel="stylesheet" href="site-bar.css">
   </head>
   
   <body>
     <!-- THEME TOGGLE BUTTON -->
-    <button class="theme-toggle" type="button" aria-label="Switch to light mode"><i class="fas fa-sun" aria-hidden="true"></i></button>
-
-    <!-- Header Section with Banner -->
-    <header class="gradient-bg text-white py-6">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col items-center">
-          <a href="https://team236.github.io/" target="_blank">
-            <img src="brighter banner.jpg" alt="236 Technoticks Banner" 
-                 class="header-banner disney-border hover:border-white">
-          </a>
-        </div>
-          <!-- Navigation -->
-          <div class="site-nav-slot">
-            <nav class="site-nav" aria-label="Main">
-              <div class="nav-row flex flex-wrap justify-center gap-3 md:gap-4">
-                <a href="https://team236.github.io/"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-home mr-2"></i>Home
-        </a>
-        
-        <a href="https://team236.github.io/about_us"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-users mr-2"></i>About Us
-        </a>
-        
-        <a href="https://team236.github.io/New_members"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-user-plus mr-2"></i>New Members
-        </a>
-        
-        <a href="https://team236.github.io/Contact_Us"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-envelope mr-2"></i>Contact Us
-        </a>
-        
-        <a href="https://team236.github.io/Robot_archive"  
-           aria-current="page" class="nav-btn nav-current bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-robot mr-2"></i>Robot Archive
-        </a>
-        
-        <a href="https://team236.github.io/Links"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-link mr-2"></i>Links
-        </a>
-        <a href="https://team236.github.io/bash"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-umbrella-beach mr-2"></i>𓆉 Bash@theBeach
-        </a>
-              </div>
-            </nav>
-          </div>
+    <!-- Top bar: styles in site-bar.css, collapse-on-scroll in site-bar.js -->
+    <header class="site-bar">
+      <div class="site-bar-inner">
+        <a class="site-logo" href="https://team236.github.io/" aria-label="Team 236 TechnoTicks home"><img src="Logo.png" alt="Team 236 TechnoTicks, Lyme-Old Lyme and East Lyme High Schools" width="524" height="195"></a>
+        <nav class="site-bar-nav" aria-label="Main">
+        <a class="site-bar-link" href="https://team236.github.io/">Home</a>
+        <a class="site-bar-link" href="https://team236.github.io/about_us">About</a>
+        <a class="site-bar-link" href="https://team236.github.io/New_members">New Members</a>
+        <a class="site-bar-link nav-current" href="https://team236.github.io/Robot_archive" aria-current="page">Robots</a>
+        <a class="site-bar-link" href="https://team236.github.io/bash">Bash @ the Beach</a>
+        <a class="site-bar-link" href="https://team236.github.io/Links">Links</a>
+        <a class="site-bar-link" href="https://team236.github.io/Contact_Us">Contact</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Switch to light mode"><i class="fas fa-sun" aria-hidden="true"></i></button>
       </div>
     </header>
+    <div class="site-bar-spacer" aria-hidden="true"></div>
     
     <!-- Main Content -->
     <main class="ra-main">
@@ -970,7 +935,7 @@
 
     <script>
       // Optional: Add animation when banner is clicked
-      document.querySelector('.header-banner').addEventListener('click', function() {
+      (document.querySelector('.header-banner') || document.createElement('i')).addEventListener('click', function() {
         this.style.transform = 'scale(0.98)';
         setTimeout(() => {
           this.style.transform = 'scale(1.02)';
@@ -1116,6 +1081,7 @@
         measure(); update();
       })();
     </script>
+      <script src="site-bar.js"></script>
   </body>
 </html>
 

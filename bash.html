@@ -284,6 +284,7 @@
       body.theme-coolLook .bb-card { background: rgba(15, 15, 30, 0.72); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
       body.theme-easyRead .bb-card { background: #fff; color: #111; border: 1px solid rgba(30,64,175,.14); box-shadow: 0 10px 24px -16px rgba(30,64,175,.45); }
       .bb-hero { text-align: center; }
+      .bb-banner { display: block; width: 100%; max-width: 40rem; height: auto; margin: 0 auto 1.5rem; border-radius: 1rem; box-shadow: 0 10px 24px -14px rgba(0,0,0,.6); }
       .bb-eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin-bottom: .4rem; }
       .bb-h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 700; line-height: 1.1; }
       .bb-tag { display: inline-block; margin: .75rem 0 1rem; padding: .35rem .9rem; border-radius: 999px; font-weight: 700; color: #fff; background-image: linear-gradient(135deg, #5a7df5, #8b5cf6); }
@@ -333,69 +334,35 @@
       @media (prefers-reduced-motion: reduce) { .bb-tile img, .bb-tile video, .bb-btn { transition: none; } }
 
     </style>
+      <link rel="stylesheet" href="site-bar.css">
   </head>
   
   <body>
     <!-- THEME TOGGLE BUTTON -->
-    <button class="theme-toggle" type="button" aria-label="Switch to light mode"><i class="fas fa-sun" aria-hidden="true"></i></button>
-
-    <!-- Header Section with Banner -->
-    <header class="gradient-bg text-white py-6">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col items-center">
-          <a href="https://team236.github.io/" target="_blank">
-            <img src="bashbanner.png" alt="Bash @ the Beach banner" 
-                 class="header-banner disney-border hover:border-white">
-          </a>
-        </div>
-          <!-- Navigation -->
-          <div class="site-nav-slot">
-            <nav class="site-nav" aria-label="Main">
-              <div class="nav-row flex flex-wrap justify-center gap-3 md:gap-4">
-                <a href="https://team236.github.io/"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-home mr-2"></i>Home
-        </a>
-        
-        <a href="https://team236.github.io/about_us"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-users mr-2"></i>About Us
-        </a>
-        
-        <a href="https://team236.github.io/New_members"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-user-plus mr-2"></i>New Members
-        </a>
-        
-        <a href="https://team236.github.io/Contact_Us"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-envelope mr-2"></i>Contact Us
-        </a>
-        
-        <a href="https://team236.github.io/Robot_archive"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-robot mr-2"></i>Robot Archive
-        </a>
-        
-        <a href="https://team236.github.io/Links"  
-           class="nav-btn bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-link mr-2"></i>Links
-        </a>
-        <a href="https://team236.github.io/bash"  
-           aria-current="page" class="nav-btn nav-current bg-blue-800 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
-          <i class="fas fa-umbrella-beach mr-2"></i>𓆉 Bash@theBeach
-        </a>
-              </div>
-            </nav>
-          </div>
+    <!-- Top bar: styles in site-bar.css, collapse-on-scroll in site-bar.js -->
+    <header class="site-bar">
+      <div class="site-bar-inner">
+        <a class="site-logo" href="https://team236.github.io/" aria-label="Team 236 TechnoTicks home"><img src="Logo.png" alt="Team 236 TechnoTicks, Lyme-Old Lyme and East Lyme High Schools" width="524" height="195"></a>
+        <nav class="site-bar-nav" aria-label="Main">
+        <a class="site-bar-link" href="https://team236.github.io/">Home</a>
+        <a class="site-bar-link" href="https://team236.github.io/about_us">About</a>
+        <a class="site-bar-link" href="https://team236.github.io/New_members">New Members</a>
+        <a class="site-bar-link" href="https://team236.github.io/Robot_archive">Robots</a>
+        <a class="site-bar-link nav-current" href="https://team236.github.io/bash" aria-current="page">Bash @ the Beach</a>
+        <a class="site-bar-link" href="https://team236.github.io/Links">Links</a>
+        <a class="site-bar-link" href="https://team236.github.io/Contact_Us">Contact</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Switch to light mode"><i class="fas fa-sun" aria-hidden="true"></i></button>
       </div>
     </header>
+    <div class="site-bar-spacer" aria-hidden="true"></div>
     
     <!-- Main Content -->
     <main class="container mx-auto px-4 my-10 bb-main">
 
       <!-- ================= Intro ================= -->
       <section class="bb-card bb-hero">
+        <img class="bb-banner" src="bashbanner.png" alt="Bash @ the Beach 25' banner, presented by Dominion Energy" width="8000" height="2000">
         <p class="bb-eyebrow"><i class="fas fa-umbrella-beach" aria-hidden="true"></i> Hosted by Team 236, the TechnoTicks</p>
         <h1 class="bb-h1">Bash @ the Beach</h1>
         <p class="bb-tag">Now a <em>FIRST</em>&reg; LEGO&reg; League event</p>
@@ -497,7 +464,7 @@
 
     <script>
       // Optional: Add animation when banner is clicked
-      document.querySelector('.header-banner').addEventListener('click', function() {
+      (document.querySelector('.header-banner') || document.createElement('i')).addEventListener('click', function() {
         this.style.transform = 'scale(0.98)';
         setTimeout(() => {
           this.style.transform = 'scale(1.02)';
@@ -716,5 +683,6 @@
         findFiles().then(render);
       })();
     </script>
+      <script src="site-bar.js"></script>
   </body>
 </html>

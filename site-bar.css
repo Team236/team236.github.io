@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Top bar (shared by every page): logo on the left, nav links and the
+   dark/light toggle on the right. It shrinks into a compact frosted bar
+   once the page is scrolled (site-bar.js adds .is-collapsed).
+   Edit this one file to change the top bar everywhere.
+   ========================================================================== */
+:root { --bar-h: 6rem; --bar-h-small: 4rem; }
+
+.site-bar-spacer { height: var(--bar-h); }
+
+body .site-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  height: var(--bar-h); display: flex; align-items: center;
+  color: #fff; background: transparent;
+  transition: height .3s ease, background-color .3s ease, box-shadow .3s ease;
+}
+body .site-bar::before {          /* the bar's own background: fades in / thickens as it collapses */
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: opacity .3s ease;
+}
+body.theme-coolLook .site-bar::before { background: linear-gradient(180deg, rgba(5, 5, 20, 0.92), rgba(10, 10, 30, 0.78)); }
+body.theme-easyRead .site-bar::before { background: linear-gradient(135deg, #5a7df5 0%, #1e40af 100%); border-bottom-color: rgba(255, 255, 255, 0.35); }
+
+/* on the home page the bar starts see-through over the slideshow */
+body .site-bar.site-bar--overlay::before { opacity: .35; }
+
+body .site-bar.is-collapsed { height: var(--bar-h-small); }
+body .site-bar.is-collapsed::before {
+  opacity: 1; backdrop-filter: blur(12px) saturate(1.2); -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.7);
+}
+body.theme-coolLook .site-bar.is-collapsed::before { background: rgba(8, 8, 24, 0.88); }
+
+.site-bar-inner {
+  width: 100%; max-width: 76rem; margin: 0 auto; padding: 0 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+
+/* logo in a white rounded box, like the team's printed logo */
+.site-logo {
+  flex: 0 0 auto; display: inline-flex; align-items: center;
+  background: #fff; border-radius: .5rem; padding: .3rem .55rem;
+  box-shadow: 0 4px 14px -6px rgba(0, 0, 0, 0.6);
+  transition: transform .2s ease;
+}
+.site-logo:hover { transform: translateY(-1px); }
+.site-logo img { display: block; height: 3rem; width: auto; transition: height .3s ease; }
+.site-bar.is-collapsed .site-logo img { height: 2.25rem; }
+
+/* nav links: plain text, current page in a gradient pill */
+body .site-bar nav.site-bar-nav {
+  margin: 0 0 0 auto; padding: 0; background: none; border: 0; border-radius: 0; box-shadow: none;
+  backdrop-filter: none; -webkit-backdrop-filter: none; color: inherit;
+  display: flex; align-items: center; gap: .25rem; min-width: 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+body .site-bar nav.site-bar-nav::-webkit-scrollbar { display: none; }
+.site-bar-link {
+  flex: 0 0 auto; white-space: nowrap; color: #fff; text-decoration: none;
+  font-size: .95rem; font-weight: 500; line-height: 1;
+  padding: .7rem .95rem; border-radius: 999px;
+  transition: background-color .2s ease, color .2s ease;
+}
+.site-bar-link:hover { background: rgba(255, 255, 255, 0.12); }
+.site-bar-link:focus-visible { outline: 2px solid #8ca7fa; outline-offset: 2px; }
+.site-bar-link.nav-current {
+  background-image: linear-gradient(135deg, #5a7df5, #8b5cf6);
+  box-shadow: 0 6px 16px -8px rgba(139, 92, 246, 0.9);
+}
+body.theme-easyRead .site-bar-link.nav-current { background-image: linear-gradient(135deg, #ffffff, #e0e7ff); color: #1e3a8a; }
+
+/* the round sun / moon button sits at the end of the bar */
+body .site-bar .theme-toggle {
+  position: static; flex: 0 0 auto; margin: 0;
+  width: 2.75rem; height: 2.75rem; border-radius: 50%;
+}
+body.theme-coolLook .site-bar .theme-toggle { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.18); }
+
+/* phones and small tablets: logo + toggle on top, the links in a sideways-scrolling row underneath */
+@media (max-width: 900px) {
+  :root { --bar-h: 7.5rem; --bar-h-small: 6.25rem; }
+  .site-bar-inner { flex-wrap: wrap; row-gap: .5rem; padding: 0 1rem; }
+  body .site-bar .theme-toggle { margin-left: auto; order: 2; }
+  .site-logo { order: 1; }
+  body .site-bar nav.site-bar-nav { order: 3; flex: 1 0 100%; margin: 0; padding-bottom: .1rem; }
+  .site-bar-link { padding: .55rem .8rem; font-size: .88rem; }
+  .site-logo img { height: 2.5rem; }
+  .site-bar.is-collapsed .site-logo img { height: 2rem; }
+  body .site-bar .theme-toggle { width: 2.4rem; height: 2.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .site-bar, body .site-bar::before, .site-logo, .site-logo img, .site-bar-link { transition: none; }
+}
