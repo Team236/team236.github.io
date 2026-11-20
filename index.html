@@ -304,25 +304,27 @@
       .fp-stage { position: absolute; inset: 0; opacity: var(--fp-see, 0.86); }       /* 1 = solid photos, lower = more of the page colours show through */
       .fp-hero { --fp-veil: 0.45; }                                              /* how strong the dark base, glows and dark fades are: 1 = the old look, 0 = none */
       body.theme-easyRead .fp-hero { --fp-see: 0.9; --fp-veil: 0.4; }
-      /* the left side melts into the page's background colour, so the title sits on a clean field
-         and the photo appears to come out of the page; plus a soft fade along the bottom */
-      .fp-hero { --fp-fade: 10, 10, 26; }                              /* Cool Look page background (#0a0a1a) */
-      body.theme-easyRead .fp-hero { --fp-fade: 30, 58, 138; }         /* EasyRead: deep blue, so the white title stays readable */
-      .fp-shade {
-        position: absolute; inset: 0; z-index: 2; pointer-events: none;
-        background:
-          linear-gradient(90deg,
-            rgb(var(--fp-fade)) 0%, rgb(var(--fp-fade)) 18%,
-            rgba(var(--fp-fade), .92) 28%, rgba(var(--fp-fade), .7) 38%,
-            rgba(var(--fp-fade), .35) 50%, rgba(var(--fp-fade), .1) 62%, rgba(var(--fp-fade), 0) 72%),
-          linear-gradient(0deg, rgba(var(--fp-fade), .85) 0%, rgba(var(--fp-fade), 0) 38%);
+      /* the left side of the photo melts away into the page's own background (in Cool Look: the dark base
+         with its purple and blue glows), so the title sits on the page rather than on a black box.
+         The photo itself is faded with a mask, so whatever is behind it shows through. */
+      .fp-stage {
+        --fp-mask-x: linear-gradient(90deg, transparent 0%, transparent 14%, rgba(0,0,0,.25) 30%, rgba(0,0,0,.65) 46%, #000 70%);
+        --fp-mask-y: linear-gradient(0deg, transparent 0%, rgba(0,0,0,.55) 18%, #000 42%);
+        -webkit-mask-image: var(--fp-mask-x), var(--fp-mask-y); -webkit-mask-composite: source-in;
+                mask-image: var(--fp-mask-x), var(--fp-mask-y);         mask-composite: intersect;
       }
-      @media (max-width: 700px) {   /* phones: the title covers most of the width, so fade from the bottom instead */
-        .fp-shade {
-          background:
-            linear-gradient(90deg, rgba(var(--fp-fade), .75) 0%, rgba(var(--fp-fade), .2) 60%, rgba(var(--fp-fade), 0) 100%),
-            linear-gradient(0deg, rgb(var(--fp-fade)) 0%, rgba(var(--fp-fade), .85) 30%, rgba(var(--fp-fade), 0) 70%);
+      @media (max-width: 700px) {   /* phones: the title covers most of the width, so fade mostly from the bottom */
+        .fp-stage {
+          --fp-mask-x: linear-gradient(90deg, rgba(0,0,0,.35) 0%, #000 75%);
+          --fp-mask-y: linear-gradient(0deg, transparent 0%, rgba(0,0,0,.35) 30%, #000 70%);
         }
+      }
+      /* EasyRead's page is light blue, so a deep-blue wash keeps the white title readable there */
+      .fp-shade { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+      body.theme-easyRead .fp-shade {
+        background:
+          linear-gradient(90deg, rgba(30, 58, 138, .9) 0%, rgba(30, 58, 138, .7) 30%, rgba(30, 58, 138, .25) 55%, rgba(30, 58, 138, 0) 72%),
+          linear-gradient(0deg, rgba(30, 58, 138, .7) 0%, rgba(30, 58, 138, 0) 38%);
       }
 
       /* the header floats over the slideshow; its own background fades in as you scroll */
