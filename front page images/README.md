@@ -26,7 +26,7 @@ Videos play without sound and move on to the next slide when they finish (or aft
 
 - **Photos:** around 2000 pixels wide and under 1.5 MB is plenty. A 12 MB photo straight off a phone works but loads slowly.
 - **Videos:** keep clips short (under about 15 seconds) and small (under 10 MB). GitHub's website only accepts files up to 25 MB.
-- **Orientation:** landscape photos fill the banner. Portrait and square photos are shown whole with a blurred copy behind them, so nothing gets chopped off.
+- **Orientation:** every photo is zoomed in to fill the whole banner, so wide (landscape) photos work best. Portrait and square photos are cropped to their upper middle, and the left side of every photo fades into the page color behind the title, so keep the main subject toward the right.
 - **iPhone videos:** if a clip doesn't show up, go to Settings > Camera > Formats and pick **Most Compatible**, or export it as `.mp4`. Some Firefox versions can't play the newer iPhone format.
 - **HEIC photos** are converted in the visitor's browser, which takes a few extra seconds per photo. `.jpg` or `.webp` loads faster.
 
