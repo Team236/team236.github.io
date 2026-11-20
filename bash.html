@@ -308,6 +308,7 @@
       .bb-tile .bb-play { position: absolute; top: .5rem; right: .5rem; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; background: rgba(0,0,0,.55); font-size: .8rem; }
       .bb-ph { aspect-ratio: 4 / 3; border-radius: .8rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; text-align: center; padding: 1rem; font-size: .9rem; border: 2px dashed rgba(140,167,250,.5); opacity: .8; }
       .bb-ph i { font-size: 1.8rem; opacity: .7; }
+      .bb-credit { margin-top: .75rem; font-size: .8rem; opacity: .7; text-align: center; }
       .bb-more { margin-top: 1.25rem; text-align: center; }
       .bb-more a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
       .bb-map { padding: .5rem; overflow: hidden; }
@@ -441,6 +442,7 @@
         <h2 class="bb-h2 bb-h2-lg" id="bb-gal-h">First robots, big smiles</h2>
         <p class="bb-sub">Young builders learning robotics at Bash @ the Beach. Tap a photo to see it larger.</p>
         <div class="bb-gallery" id="bb-gallery" aria-live="polite"></div>
+        <p class="bb-credit" id="bb-credit" hidden>Stand-in photo &copy; <em>FIRST</em>&reg; LEGO&reg; League. Our own Bash @ the Beach photos are coming soon.</p>
         <p class="bb-more">
           More photos on our
           <a href="https://www.instagram.com/236technoticks/" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a>
@@ -580,11 +582,16 @@
         var FOLDER = 'bash images';                 // folder in the repo (next to bash.html)
         var REPO = 'Team236/team236.github.io';     // used to list the folder
         var CACHE_KEY = 'bb-gallery-v1', CACHE_MS = 5 * 60 * 1000;
-        var PLACEHOLDERS = 6;                       // empty tiles shown until photos are added
+        var PLACEHOLDERS = 12;                      // tiles shown until photos are added to the folder
+        // Stand-in photo shown in every placeholder tile until team photos arrive (copyright FIRST LEGO League).
+        // Set to '' to show plain "Photos coming soon" tiles instead.
+        var PLACEHOLDER_IMG = 'https://www.ironcad.com/wp-content/uploads/2019/02/FLL-picture-2-1200x692.png';
+        var PLACEHOLDER_CAP = 'FIRST LEGO League in action';
         var IMG_EXT = ['jpg', 'jpeg', 'png', 'webp', 'avif', 'gif', 'svg', 'bmp'];
         var VID_EXT = ['mp4', 'm4v', 'mov', 'webm', 'ogv'];
 
         var grid = document.getElementById('bb-gallery');
+        var credit = document.getElementById('bb-credit');
         var lb = document.getElementById('bb-lb');
         if (!grid || !lb) return;
         var base = encodeURIComponent(FOLDER) + '/';
@@ -626,6 +633,13 @@
 
         function placeholders() {
           grid.innerHTML = '';
+          if (PLACEHOLDER_IMG) {
+            var list = [];
+            for (var k = 0; k < PLACEHOLDERS; k++) list.push({ url: PLACEHOLDER_IMG, kind: 'image', caption: PLACEHOLDER_CAP, stand: true });
+            draw(list);
+            if (credit) credit.hidden = false;
+            return;
+          }
           for (var i = 0; i < PLACEHOLDERS; i++) {
             var d = document.createElement('div');
             d.className = 'bb-ph';
@@ -638,6 +652,11 @@
             .sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }); })
             .map(function (n) { return { url: base + encodeURIComponent(n), kind: kindOf(n), caption: captionFrom(n) }; });
           if (!items.length) { placeholders(); return; }
+          if (credit) credit.hidden = true;
+          draw(items);
+        }
+        function draw(list) {
+          items = list;
           grid.innerHTML = '';
           items.forEach(function (it, i) {
             var b = document.createElement('button');
@@ -651,7 +670,12 @@
               m = document.createElement('img'); m.src = it.url; m.loading = 'lazy'; m.decoding = 'async';
               m.alt = it.caption || 'Students learning robotics at Bash @ the Beach';
             }
-            m.addEventListener('error', function () { b.remove(); });
+            m.addEventListener('error', function () {
+              if (!it.stand) { b.remove(); return; }
+              var d = document.createElement('div'); d.className = 'bb-ph';           // stand-in failed to load
+              d.innerHTML = '<i class="fas fa-camera" aria-hidden="true"></i><span>Photos coming soon</span>';
+              b.replaceWith(d);
+            });
             b.insertBefore(m, b.firstChild);
             if (it.caption) { var c = document.createElement('span'); c.className = 'bb-tile-cap'; c.textContent = it.caption; b.appendChild(c); }
             b.addEventListener('click', function () { open(i); });
@@ -689,7 +713,6 @@
           if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
         });
 
-        placeholders();
         findFiles().then(render);
       })();
     </script>
