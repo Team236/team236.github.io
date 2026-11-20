@@ -27,7 +27,7 @@ It started as pure HTML and has since been enhanced with some vibe coding done w
 | Contact Us | `Contact_Us.html` | How to reach the team |
 | Robot Archive | `Robot_archive.html` | Every robot since 1999: game info, photos, stats links and 3D models |
 | Links | `Links.html` | Our social media |
-| Bash@theBeach | `bash.html` | Bash @ the Beach, our off-season FIRST Robotics event aimed at training new team members |
+| Bash@theBeach | `bash.html` | Bash @ the Beach, now a *FIRST* LEGO League (FLL) event where younger students learn robotics, with a photo gallery |
 
 A few pages aren't in the top bar. They're experiments and leftovers:
 
@@ -45,6 +45,7 @@ A few pages aren't in the top bar. They're experiments and leftovers:
 - **Front page slideshow.** The home page plays every photo and video clip in the `front page images` folder. It fills the top of the page behind the logo and nav, then pulls in to a rounded card as you scroll. Drop files in and they appear on the site, with captions taken from the file names. It handles `.jpg`, `.png`, `.webp`, `.avif`, `.gif`, iPhone `.heic`, and `.mp4`, `.mov` and `.webm` clips. See [the front page slideshow](#the-front-page-slideshow) below.
 - **Live stats from The Blue Alliance.** The numbers bar and the "On the field" results on the home page are pulled straight from [The Blue Alliance](https://www.thebluealliance.com) (TBA), so they update themselves. See [the live numbers section](#live-numbers-and-results-from-the-blue-alliance) below.
 - **Floating nav.** The nav buttons sit inside the top banner. Scroll down and they pop out into their own floating bar (the banner itself scrolls away), with the sun/moon button tucked into its right end. The page you're on is highlighted, and on small screens the bar swipes sideways.
+- **Bash @ the Beach gallery.** The Bash page shows a photo grid of everything in the `bash images` folder, with a full-screen viewer (arrows, swipe, Esc to close). It finds the files the same way the front page slideshow does. See `bash images/README.md`.
 - **Robot Archive.** One card per season, with a sticky "jump to a season" bar, photos or embedded slideshows, and links to Statbotics, The Blue Alliance and 3D models. Each card has a copy-link button for sharing a specific year.
 - **Clean URLs.** Links don't use `.html`, so the About page is `/about_us`, not `/about_us.html`. GitHub Pages serves both.
 - **Mobile friendly.** The pages are responsive and work on phones.
@@ -164,6 +165,7 @@ Nothing on the home page's stats bar or results section is typed in by hand. Whe
 ├── YYYY.webp / YYYY.png             robot photos, one per season
 ├── robot-hero.webp                  banner photo on the Robot Archive
 ├── front page images/               photos and videos for the home page slideshow
+├── bash images/                     photos and clips for the Bash @ the Beach gallery
 ├── .github/workflows/               optional: keeps the slideshow's backup list up to date
 ├── Logo.png, favicon.ico, ...       logos and banners
 ├── 404.html                         page not found
