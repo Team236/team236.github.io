@@ -103,7 +103,7 @@ Nothing on the home page's stats bar or results section is typed in by hand. Whe
 
 ### Adding a new robot to the archive
 
-1. **Add the photo** to the repo root as `YYYY.webp`, with a `YYYY.png` fallback (for example `2027.webp` and `2027.png`). Optimized `.webp` files keep the page fast.
+1. **Add the photo** to the `RobotPhotos` folder as `YYYY.webp`, with a `YYYY.png` fallback (for example `2027.webp` and `2027.png`). Optimized `.webp` files keep the page fast.
 2. **Add a chip** to the jump bar near the top of `Robot_archive.html` (newest first):
 
    ```html
@@ -116,8 +116,8 @@ Nothing on the home page's stats bar or results section is typed in by hand. Whe
    <article class="rc has-media" id="y2027">
      <div class="rc-media">
        <picture>
-         <source srcset="2027.webp" type="image/webp">
-         <img src="2027.png" alt="Team 236's robot from the 2027 season (Game Name)" width="800" height="1000" loading="lazy" decoding="async">
+         <source srcset="RobotPhotos/2027.webp" type="image/webp">
+         <img src="RobotPhotos/2027.png" alt="Team 236's robot from the 2027 season (Game Name)" width="800" height="1000" loading="lazy" decoding="async">
        </picture>
      </div>
      <div class="rc-content">
@@ -162,7 +162,7 @@ Nothing on the home page's stats bar or results section is typed in by hand. Whe
 .
 ├── index.html, about_us.html, ...   the pages (see above)
 ├── style.css                        placeholder (the CSS lives inside each page)
-├── YYYY.webp / YYYY.png             robot photos, one per season
+├── RobotPhotos/                     robot photos for the Robot Archive (YYYY.webp + YYYY.png)
 ├── robot-hero.webp                  banner photo on the Robot Archive
 ├── front page images/               photos and videos for the home page slideshow
 ├── bash images/                     photos and clips for the Bash @ the Beach gallery
